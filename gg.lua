@@ -636,7 +636,147 @@ function PhoenixUI:Window(v28)
             v48.Sections[#v48.Sections + 1] = v62
             return v62
         end
+        function v62:Dropdown(v69)
+                v69 = v69 or {}
+                local v100 = {
+                    Text = v69.Text or "Dropdown",
+                    Options = v69.Options or {},
+                    Multi = v69.Multi or false,
+                    Default = v69.Default,
+                    Flag = v69.Flag,
+                    Callback = v69.Callback or function() end,
+                    Value = v69.Multi and {} or nil,
+                    Open = false
+                }
 
+                local v101 = PhoenixUI:v24("Frame",false)
+                v101.BackgroundTransparency = 1
+                v101.Size = UDim2.new(1,-10,0,30)
+                v101.Parent = v66
+
+                local v102 = PhoenixUI:v24("TextButton",false)
+                v102.BackgroundColor3 = Color3.fromRGB(45,45,45)
+                v102.BorderSizePixel = 0
+                v102.Size = UDim2.new(1,0,0,25)
+                v102.Text = ""
+                v102.AutoButtonColor = false
+                v102.Parent = v101
+
+                local v103 = PhoenixUI:v24("TextLabel",false)
+                v103.Text = v100.Text
+                v103.TextColor3 = Color3.fromRGB(255,255,255)
+                v103.FontFace = PhoenixUI.UIFont
+                v103.TextSize = 12
+                v103.BackgroundTransparency = 1
+                v103.Position = UDim2.new(0,5,0,0)
+                v103.Size = UDim2.new(1,-25,1,0)
+                v103.TextXAlignment = Enum.TextXAlignment.Left
+                v103.Parent = v102
+
+                local v104 = PhoenixUI:v24("Frame",false)
+                v104.BackgroundColor3 = Color3.fromRGB(35,35,35)
+                v104.BorderSizePixel = 0
+                v104.Position = UDim2.new(0,0,1,0)
+                v104.Size = UDim2.new(1,0,0,0)
+                v104.Visible = false
+                v104.AutomaticSize = Enum.AutomaticSize.Y
+                v104.Parent = v102
+
+                local v105 = PhoenixUI:v24("UIListLayout",false)
+                v105.Padding = UDim.new(0,2)
+                v105.SortOrder = Enum.SortOrder.LayoutOrder
+                v105.Parent = v104
+
+                local function UpdateDisplay()
+                    if v100.Multi then
+                        local texts = {}
+                        for _,val in pairs(v100.Value) do
+                            table.insert(texts,tostring(val))
+                        end
+                        v103.Text = v100.Text.." : "..table.concat(texts,", ")
+                    else
+                        v103.Text = v100.Text.." : "..tostring(v100.Value or "")
+                    end
+                end
+
+                local function SelectOption(option)
+                    if v100.Multi then
+                        if table.find(v100.Value,option) then
+                            for i,v in ipairs(v100.Value) do
+                                if v == option then
+                                    table.remove(v100.Value,i)
+                                    break
+                                end
+                            end
+                        else
+                            table.insert(v100.Value,option)
+                        end
+                    else
+                        v100.Value = option
+                        v100.Open = false
+                        v104.Visible = false
+                        v101.Size = UDim2.new(1,-10,0,30)
+                    end
+                    if v100.Flag then
+                        PhoenixUI.Flags[v100.Flag] = v100.Value
+                    end
+                    UpdateDisplay()
+                    v100.Callback(v100.Value)
+                end
+
+                for _,opt in ipairs(v100.Options) do
+                    local v106 = PhoenixUI:v24("TextButton",false)
+                    v106.BackgroundColor3 = Color3.fromRGB(55,55,55)
+                    v106.BorderSizePixel = 0
+                    v106.Size = UDim2.new(1,0,0,20)
+                    v106.TextColor3 = Color3.fromRGB(255,255,255)
+                    v106.Text = tostring(opt)
+                    v106.FontFace = PhoenixUI.UIFont
+                    v106.TextSize = 12
+                    v106.Parent = v104
+
+                    PhoenixUI:v6(v106.MouseButton1Click,function()
+                        SelectOption(opt)
+                    end)
+
+                    PhoenixUI:v6(v106.TouchTap,function()
+                        SelectOption(opt)
+                    end)
+                end
+
+                PhoenixUI:v6(v102.MouseButton1Click,function()
+                    v100.Open = not v100.Open
+                    v104.Visible = v100.Open
+                    if v100.Open then
+                        v101.Size = UDim2.new(1,-10,0,30 + v104.AbsoluteSize.Y)
+                    else
+                        v101.Size = UDim2.new(1,-10,0,30)
+                    end
+                end)
+
+                PhoenixUI:v6(v102.TouchTap,function()
+                    v100.Open = not v100.Open
+                    v104.Visible = v100.Open
+                    if v100.Open then
+                        v101.Size = UDim2.new(1,-10,0,30 + v104.AbsoluteSize.Y)
+                    else
+                        v101.Size = UDim2.new(1,-10,0,30)
+                    end
+                end)
+
+                if v100.Multi and type(v100.Default) == "table" then
+                    v100.Value = v100.Default
+                elseif not v100.Multi then
+                    v100.Value = v100.Default
+                end
+                if v100.Flag then
+                    PhoenixUI.Flags[v100.Flag] = v100.Value
+                end
+                UpdateDisplay()
+
+                return v100
+        end
+                 
         if #v29.Pages == 0 then
             v48:SetActive(true)
         end
