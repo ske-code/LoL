@@ -296,12 +296,16 @@ function PhoenixUI:Window(v28)
             v63.BorderSizePixel = 0
             v63.Parent = v52
 
+            local v67 = PhoenixUI:v24("UIListLayout",false)
+            v67.FillDirection = Enum.FillDirection.Horizontal
+            v67.Padding = UDim.new(0,10)
+            v67.SortOrder = Enum.SortOrder.LayoutOrder
+            v67.Parent = v52
+
             if v62.Side == "Right" then
-                v63.AnchorPoint = Vector2.new(1,0)  
-                v63.Position = UDim2.new(1,0,0,0)
+                v63.LayoutOrder = 2
             else
-                v63.AnchorPoint = Vector2.new(0,0)
-                v63.Position = UDim2.new(0,0,0,0)
+                v63.LayoutOrder = 1
             end
 
             local v64 = PhoenixUI:v24("TextLabel",false)
@@ -330,16 +334,16 @@ function PhoenixUI:Window(v28)
             v66.BorderSizePixel = 0
             v66.Parent = v63
 
-            local v67 = PhoenixUI:v24("UIListLayout",false)
-            v67.Padding = UDim.new(0,8)
-            v67.SortOrder = Enum.SortOrder.LayoutOrder
-            v67.Parent = v66
-
-            local v68 = PhoenixUI:v24("UIPadding",false)
-            v68.PaddingLeft = UDim.new(0,5)
-            v68.PaddingTop = UDim.new(0,5)
-            v68.PaddingBottom = UDim.new(0,5)
+            local v68 = PhoenixUI:v24("UIListLayout",false)
+            v68.Padding = UDim.new(0,8)
+            v68.SortOrder = Enum.SortOrder.LayoutOrder
             v68.Parent = v66
+
+            local v69 = PhoenixUI:v24("UIPadding",false)
+            v69.PaddingLeft = UDim.new(0,5)
+            v69.PaddingTop = UDim.new(0,5)
+            v69.PaddingBottom = UDim.new(0,5)
+            v69.Parent = v66
 
             v62.Elements = {
                 Main = v63,
