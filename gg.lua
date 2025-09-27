@@ -351,8 +351,6 @@ function PhoenixUI:Window(v28)
                     Callback = v69.Callback or function() end
                 }
 
-                
-
                 local v71 = PhoenixUI:v24("TextButton",false)
                 v71.BackgroundColor3 = Color3.fromRGB(45,45,45)
                 v71.BorderSizePixel = 0  
@@ -367,6 +365,7 @@ function PhoenixUI:Window(v28)
                 v72.Position = UDim2.new(0,5,0,5)
                 v72.Size = UDim2.new(0,15,0,15)
                 v72.Parent = v71
+
                 local v73 = PhoenixUI:v24("Frame",true)
                 v73.BackgroundColor3 = PhoenixUI.Accent
                 v73.Position = UDim2.new(0,2,0,2)
@@ -388,6 +387,11 @@ function PhoenixUI:Window(v28)
 
                 function v70:Set(v75)
                     v73.Visible = v75
+                    if v75 then
+                        v72.BackgroundColor3 = PhoenixUI.Accent
+                    else
+                        v72.BackgroundColor3 = Color3.fromRGB(60,60,60)
+                    end
                     if v70.Flag then
                         PhoenixUI.Flags[v70.Flag] = v75
                     end
