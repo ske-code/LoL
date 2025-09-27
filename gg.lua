@@ -1,4 +1,4 @@
-v49hoenixUI = {}
+local PhoenixUI = {}
 PhoenixUI.Open = true
 PhoenixUI.Accent = Color3.fromRGB(255, 182, 193)
 PhoenixUI.ThemeObjects = {}
