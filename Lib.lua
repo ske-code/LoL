@@ -171,7 +171,7 @@ function PhoenixUI:Window(v27)
         v42.Size = UDim2.new(1,0,0,30)
         v42.Text = v41.Name
         v42.TextColor3 = Color3.fromRGB(200,200,200)
-        v42.Font = PhoenixUI.UIFont
+        v42.FontFace = PhoenixUI.UIFont
         v42.TextSize = 12
         v42.AutoButtonColor = false
         v42.Parent = self.Elements.TabContainer
