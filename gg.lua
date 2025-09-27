@@ -92,6 +92,7 @@ function PhoenixUI:Window(v28)
     v31.AnchorPoint = Vector2.new(0.5,0.5)
     v31.Position = UDim2.new(0.5,0,0.5,0)
     v31.Size = UDim2.new(0,650,0,700)
+    v31.BorderSizePixel = 0
     v31.Text = ""
     v31.AutoButtonColor = false
     v31.Parent = v30
@@ -121,6 +122,7 @@ function PhoenixUI:Window(v28)
     v35.BackgroundColor3 = Color3.fromRGB(25,25,25)
     v35.Position = UDim2.new(0,10,0,40)
     v35.Size = UDim2.new(1,-20,0,30)
+    v35.BorderSizePixel = 0
     v35.Parent = v32
 
     local v36 = PhoenixUI:v24("UIListLayout",false)
@@ -214,6 +216,7 @@ function PhoenixUI:Window(v28)
         v50.BackgroundColor3 = PhoenixUI.Accent
         v50.Size = UDim2.new(0,3,1,0)
         v50.Visible = false
+        v50.BorderSizePixel = 0
         v50.Parent = v49
 
         local v51 = PhoenixUI:v24("ScrollingFrame",false)
@@ -229,6 +232,7 @@ function PhoenixUI:Window(v28)
         v52.BackgroundTransparency = 1
         v52.Size = UDim2.new(1,0,0,0)
         v52.AutomaticSize = Enum.AutomaticSize.Y
+        v52.BorderSizePixel = 0
         v52.Parent = v51
 
         local v53 = PhoenixUI:v24("UIListLayout",false)
@@ -289,6 +293,7 @@ function PhoenixUI:Window(v28)
             v63.BackgroundColor3 = Color3.fromRGB(35,35,35)
             v63.Size = UDim2.new(0.48,0,0,0)
             v63.AutomaticSize = Enum.AutomaticSize.Y
+            v63.BorderSizePixel = 0
             v63.Parent = v52
 
             if v62.Side == "Right" then
@@ -310,6 +315,7 @@ function PhoenixUI:Window(v28)
             v65.BackgroundColor3 = PhoenixUI.Accent
             v65.Size = UDim2.new(1,0,0,1)
             v65.Position = UDim2.new(0,0,0,30)
+            v65.BorderSizePixel = 0
             v65.Parent = v63
 
             local v66 = PhoenixUI:v24("Frame",false)
@@ -317,6 +323,7 @@ function PhoenixUI:Window(v28)
             v66.Size = UDim2.new(1,0,0,0)
             v66.Position = UDim2.new(0,0,0,35)
             v66.AutomaticSize = Enum.AutomaticSize.Y
+            v66.BorderSizePixel = 0
             v66.Parent = v63
 
             local v67 = PhoenixUI:v24("UIListLayout",false)
@@ -347,22 +354,25 @@ function PhoenixUI:Window(v28)
                 
 
                 local v71 = PhoenixUI:v24("TextButton",false)
+                v71.BackgroundColor3 = Color3.fromRGB(45,45,45)
+                v71.BorderSizePixel = 0  
+                v71.Size = UDim2.new(1,-10,0,25)
+                v71.Text = ""
+                v71.AutoButtonColor = false
+                v71.Parent = v66
+
+                local v72 = PhoenixUI:v24("Frame",false)
                 v72.BackgroundColor3 = Color3.fromRGB(60,60,60)
+                v72.BorderSizePixel = 0 
                 v72.Position = UDim2.new(0,5,0,5)
                 v72.Size = UDim2.new(0,15,0,15)
-                v72.Text = ""
-                v72.AutoButtonColor = false
-                v72.Parent = v66
-                
-                local v71 = PhoenixUI:v24("Frame",false)
-                v71.BackgroundColor3 = Color3.fromRGB(45,45,45)
-                v71.Size = UDim2.new(1,-10,0,25)
-                v71.Parent = v71
+                v72.Parent = v71
                 local v73 = PhoenixUI:v24("Frame",true)
                 v73.BackgroundColor3 = PhoenixUI.Accent
                 v73.Position = UDim2.new(0,2,0,2)
                 v73.Size = UDim2.new(1,-4,1,-4)
                 v73.Visible = v70.Default
+                v73.BorderSizePixel = 0
                 v73.Parent = v72
 
                 local v74 = PhoenixUI:v24("TextLabel",false)
