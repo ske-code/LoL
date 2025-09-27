@@ -107,7 +107,7 @@ function PhoenixUI:Window(v27)
     local v33 = PhoenixUI:v23("TextLabel",false)
     v33.Text = v28.Name
     v33.TextColor3 = Color3.fromRGB(255,255,255)
-    v33.Font = PhoenixUI.UIFont
+    v33.FontFace = PhoenixUI.UIFont
     v33.TextSize = 14
     v33.BackgroundTransparency = 1
     v33.Position = UDim2.new(0,10,0,5)
@@ -266,7 +266,7 @@ function PhoenixUI:Window(v27)
             local v55 = PhoenixUI:v23("TextLabel",false)
             v55.Text = v51.Text
             v55.TextColor3 = Color3.fromRGB(255,255,255)
-            v55.Font = PhoenixUI.UIFont
+            v55.FontFace = PhoenixUI.UIFont
             v55.TextSize = 12
             v55.BackgroundTransparency = 1
             v55.Position = UDim2.new(0,25,0,0)
@@ -309,7 +309,7 @@ function PhoenixUI:Window(v27)
             v59.Size = UDim2.new(1,-20,0,35)
             v59.Text = v58.Text
             v59.TextColor3 = Color3.fromRGB(255,255,255)
-            v59.Font = PhoenixUI.UIFont
+            v59.FontFace = PhoenixUI.UIFont
             v59.TextSize = 12
             v59.AutoButtonColor = false
             v59.Parent = v44
@@ -365,7 +365,7 @@ function PhoenixUI:Window(v27)
             v64.Text = v62.Text
             v64.PlaceholderText = v62.Placeholder
             v64.TextColor3 = Color3.fromRGB(255,255,255)
-            v64.Font = PhoenixUI.UIFont
+            v64.FontFace = PhoenixUI.UIFont
             v64.TextSize = 12
             v64.TextXAlignment = Enum.TextXAlignment.Left
             v64.ClearTextOnFocus = false
@@ -412,7 +412,7 @@ function PhoenixUI:Window(v27)
             local v70 = PhoenixUI:v23("TextLabel",false)
             v70.Text = "Color"
             v70.TextColor3 = Color3.fromRGB(255,255,255)
-            v70.Font = PhoenixUI.UIFont
+            v70.FontFace = PhoenixUI.UIFont
             v70.TextSize = 12
             v70.BackgroundTransparency = 1
             v70.Position = UDim2.new(0,5,0,0)
@@ -556,7 +556,7 @@ function PhoenixUI:Window(v27)
             v97.Size = UDim2.new(1,-20,0,20)
             v97.Text = v96.Text
             v97.TextColor3 = Color3.fromRGB(255,255,255)
-            v97.Font = PhoenixUI.UIFont
+            v97.FontFace = PhoenixUI.UIFont
             v97.TextSize = 12
             v97.TextXAlignment = Enum.TextXAlignment.Left
             v97.Parent = v44
@@ -594,7 +594,7 @@ function PhoenixUI:Window(v27)
         local v103 = PhoenixUI:v23("TextLabel",false)
         v103.Text = v100.Text
         v103.TextColor3 = Color3.fromRGB(255,255,255)
-        v103.Font = PhoenixUI.UIFont
+        v103.FontFace = PhoenixUI.UIFont
         v103.TextSize = 12
         v103.BackgroundTransparency = 1
         v103.Size = UDim2.new(1,0,1,0)
