@@ -582,7 +582,6 @@ function PhoenixUI:Window(v28)
         Min = v99.Min or 0,
         Max = v99.Max or 100,
         Default = v99.Default or 50,
-        Precise = v99.Precise or false,
         Flag = v99.Flag,
         Callback = v99.Callback or function() end,
         Value = v99.Default or 50
@@ -643,12 +642,7 @@ function PhoenixUI:Window(v28)
         local v110 = v109.X - v104.AbsolutePosition.X
         local v111 = math.clamp(v110, 0, v104.AbsoluteSize.X)
         local v112 = (v111 / v104.AbsoluteSize.X) * (v100.Max - v100.Min) + v100.Min
-        
-        if v100.Precise then
-            v100.Value = math.floor(v112)
-        else
-            v100.Value = math.floor(v112 * 100) / 100
-        end
+        v100.Value = math.floor(v112 * 100) / 100
         
         v105.Size = UDim2.new((v100.Value - v100.Min) / (v100.Max - v100.Min),0,1,0)
         v106.Position = UDim2.new((v100.Value - v100.Min) / (v100.Max - v100.Min),-5,0.5,-5)
@@ -701,6 +695,7 @@ function PhoenixUI:Window(v28)
         PhoenixUI.Flags[v100.Flag] = v100.Value
     end
 
+    table.insert(v62.Elements, v100)
     return v100
 end
 
