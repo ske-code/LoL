@@ -297,7 +297,9 @@ function PhoenixUI:Window(v28)
             v63.Parent = v52
 
             if v62.Side == "Right" then
-                v63.Position = UDim2.new(0.52,0,0,0)
+                    v63.Position = UDim2.new(0.52,0,0,0)
+                else
+                    v63.Position = UDim2.new(0,0,0,0)
             end
 
             local v64 = PhoenixUI:v24("TextLabel",false)
@@ -348,7 +350,8 @@ function PhoenixUI:Window(v28)
                     Text = v69.Text or "Checkbox",
                     Default = v69.Default or false,
                     Flag = v69.Flag,
-                    Callback = v69.Callback or function() end
+                    Callback = v69.Callback or function() end,
+                    Value = v69.Default or false
                 }
 
                 local v71 = PhoenixUI:v24("TextButton",false)
@@ -360,33 +363,25 @@ function PhoenixUI:Window(v28)
                 v71.Parent = v66
 
                 local v72 = PhoenixUI:v24("Frame",false)
-                v72.BackgroundColor3 = v70.Default and PhoenixUI.Accent or Color3.fromRGB(60,60,60)
+                v72.BackgroundColor3 = v70.Value and PhoenixUI.Accent or Color3.fromRGB(60,60,60)
                 v72.BorderSizePixel = 0 
                 v72.Position = UDim2.new(0,5,0,5)
                 v72.Size = UDim2.new(0,15,0,15)
                 v72.Parent = v71
 
-                local v73 = PhoenixUI:v24("Frame",true)
-                v73.BackgroundColor3 = PhoenixUI.Accent
-                v73.Position = UDim2.new(0,2,0,2)
-                v73.Size = UDim2.new(1,-4,1,-4)
-                v73.Visible = v70.Default
-                v73.BorderSizePixel = 0
-                v73.Parent = v72
-
-                local v74 = PhoenixUI:v24("TextLabel",false)
-                v74.Text = v70.Text
-                v74.TextColor3 = Color3.fromRGB(255,255,255)
-                v74.FontFace = PhoenixUI.UIFont
-                v74.TextSize = 12
-                v74.BackgroundTransparency = 1
-                v74.Position = UDim2.new(0,25,0,0)
-                v74.Size = UDim2.new(1,-25,1,0)
-                v74.TextXAlignment = Enum.TextXAlignment.Left
-                v74.Parent = v71
+                local v73 = PhoenixUI:v24("TextLabel",false)
+                v73.Text = v70.Text
+                v73.TextColor3 = Color3.fromRGB(255,255,255)
+                v73.FontFace = PhoenixUI.UIFont
+                v73.TextSize = 12
+                v73.BackgroundTransparency = 1
+                v73.Position = UDim2.new(0,25,0,0)
+                v73.Size = UDim2.new(1,-25,1,0)
+                v73.TextXAlignment = Enum.TextXAlignment.Left
+                v73.Parent = v71
 
                 function v70:Set(v75)
-                    v73.Visible = v75
+                    v70.Value = v75
                     if v75 then
                         v72.BackgroundColor3 = PhoenixUI.Accent
                     else
@@ -398,20 +393,16 @@ function PhoenixUI:Window(v28)
                     v70.Callback(v75)
                 end
 
-                local function v76()
-                    PhoenixUI:v6(v71.MouseButton1Click,function()
-                        local v77 = not v73.Visible
-                        v70:Set(v77)
-                    end)
-                    PhoenixUI:v6(v71.TouchTap,function()
-                        local v78 = not v73.Visible
-                        v70:Set(v78)
-                    end)
-                end
-                v76()
+                PhoenixUI:v6(v71.MouseButton1Click,function()
+                    v70:Set(not v70.Value)
+                end)
+
+                PhoenixUI:v6(v71.TouchTap,function()
+                    v70:Set(not v70.Value)
+                end)
 
                 if v70.Flag then
-                    PhoenixUI.Flags[v70.Flag] = v70.Default
+                    PhoenixUI.Flags[v70.Flag] = v70.Value
                 end
 
                 return v70
