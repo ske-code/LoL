@@ -360,7 +360,7 @@ function PhoenixUI:Window(v28)
                 v71.Parent = v66
 
                 local v72 = PhoenixUI:v24("Frame",false)
-                v72.BackgroundColor3 = Color3.fromRGB(60,60,60)
+                v72.BackgroundColor3 = v70.Default and PhoenixUI.Accent or Color3.fromRGB(60,60,60)
                 v72.BorderSizePixel = 0 
                 v72.Position = UDim2.new(0,5,0,5)
                 v72.Size = UDim2.new(0,15,0,15)
@@ -400,10 +400,12 @@ function PhoenixUI:Window(v28)
 
                 local function v76()
                     PhoenixUI:v6(v71.MouseButton1Click,function()
-                        v70:Set(not v73.Visible)
+                        local v77 = not v73.Visible
+                        v70:Set(v77)
                     end)
                     PhoenixUI:v6(v71.TouchTap,function()
-                        v70:Set(not v73.Visible)
+                        local v78 = not v73.Visible
+                        v70:Set(v78)
                     end)
                 end
                 v76()
