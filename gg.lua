@@ -382,7 +382,7 @@ function PhoenixUI:Window(v28)
                 v73.FontFace = PhoenixUI.UIFont
                 v73.TextSize = 12
                 v73.BackgroundTransparency = 1
-                v73.Position = UDim2.new(0,25,0,0)
+           v73.Position = UDim2.new(0,25,0,0)
                 v73.Size = UDim2.new(1,-25,1,0)
                 v73.TextXAlignment = Enum.TextXAlignment.Left
                 v73.Parent = v71
@@ -575,128 +575,6 @@ function PhoenixUI:Window(v28)
     end
 
     return v29
-    function v62:Slider(v99)
-    v99 = v99 or {}
-    local v100 = {
-        Text = v99.Text or "Slider",
-        Min = v99.Min or 0,
-        Max = v99.Max or 100,
-        Default = v99.Default or 50,
-        Flag = v99.Flag,
-        Callback = v99.Callback or function() end,
-        Value = v99.Default or 50
-    }
-
-    local v101 = PhoenixUI:v24("Frame",false)
-    v101.BackgroundColor3 = Color3.fromRGB(45,45,45)
-    v101.Size = UDim2.new(1,-10,0,50)
-    v101.Parent = v66
-
-    local v102 = PhoenixUI:v24("TextLabel",false)
-    v102.Text = v100.Text
-    v102.TextColor3 = Color3.fromRGB(255,255,255)
-    v102.FontFace = PhoenixUI.UIFont
-    v102.TextSize = 12
-    v102.BackgroundTransparency = 1
-    v102.Size = UDim2.new(1,-10,0,15)
-    v102.Position = UDim2.new(0,5,0,5)
-    v102.TextXAlignment = Enum.TextXAlignment.Left
-    v102.Parent = v101
-
-    local v103 = PhoenixUI:v24("TextLabel",false)
-    v103.Text = tostring(v100.Value)
-    v103.TextColor3 = Color3.fromRGB(200,200,200)
-    v103.FontFace = PhoenixUI.UIFont
-    v103.TextSize = 10
-    v103.BackgroundTransparency = 1
-    v103.Size = UDim2.new(1,-10,0,15)
-    v103.Position = UDim2.new(0,5,0,20)
-    v103.TextXAlignment = Enum.TextXAlignment.Right
-    v103.Parent = v101
-
-    local v104 = PhoenixUI:v24("Frame",false)
-    v104.BackgroundColor3 = Color3.fromRGB(60,60,60)
-    v104.Size = UDim2.new(1,-10,0,5)
-    v104.Position = UDim2.new(0,5,1,-15)
-    v104.BorderSizePixel = 0
-    v104.Parent = v101
-
-    local v105 = PhoenixUI:v24("Frame",true)
-    v105.BackgroundColor3 = PhoenixUI.Accent
-    v105.Size = UDim2.new((v100.Value - v100.Min) / (v100.Max - v100.Min),0,1,0)
-    v105.BorderSizePixel = 0
-    v105.Parent = v104
-
-    local v106 = PhoenixUI:v24("TextButton",false)
-    v106.BackgroundColor3 = Color3.fromRGB(255,255,255)
-    v106.Size = UDim2.new(0,10,0,10)
-    v106.Position = UDim2.new((v100.Value - v100.Min) / (v100.Max - v100.Min),-5,0.5,-5)
-    v106.BorderSizePixel = 0
-    v106.Text = ""
-    v106.AutoButtonColor = false
-    v106.Parent = v104
-
-    local v107 = false
-
-    local function v108(v109)
-        local v110 = v109.X - v104.AbsolutePosition.X
-        local v111 = math.clamp(v110, 0, v104.AbsoluteSize.X)
-        local v112 = (v111 / v104.AbsoluteSize.X) * (v100.Max - v100.Min) + v100.Min
-        v100.Value = math.floor(v112 * 100) / 100
-        
-        v105.Size = UDim2.new((v100.Value - v100.Min) / (v100.Max - v100.Min),0,1,0)
-        v106.Position = UDim2.new((v100.Value - v100.Min) / (v100.Max - v100.Min),-5,0.5,-5)
-        v103.Text = tostring(v100.Value)
-        
-        if v100.Flag then
-            PhoenixUI.Flags[v100.Flag] = v100.Value
-        end
-        v100.Callback(v100.Value)
-    end
-
-    PhoenixUI:v6(v106.InputBegan,function(v113)
-        if v113.UserInputType == Enum.UserInputType.MouseButton1 then
-            v107 = true
-        end
-    end)
-
-    PhoenixUI:v6(v4.InputChanged,function(v114)
-        if v107 and v114.UserInputType == Enum.UserInputType.MouseMovement then
-            v108(v114.Position)
-        end
-    end)
-
-    PhoenixUI:v6(v4.InputEnded,function(v115)
-        if v115.UserInputType == Enum.UserInputType.MouseButton1 then
-            v107 = false
-        end
-    end)
-
-    PhoenixUI:v6(v104.InputBegan,function(v116)
-        if v116.UserInputType == Enum.UserInputType.MouseButton1 then
-            v108(v116.Position)
-            v107 = true
-        end
-    end)
-
-    function v100:Set(v117)
-        v100.Value = math.clamp(v117, v100.Min, v100.Max)
-        v105.Size = UDim2.new((v100.Value - v100.Min) / (v100.Max - v100.Min),0,1,0)
-        v106.Position = UDim2.new((v100.Value - v100.Min) / (v100.Max - v100.Min),-5,0.5,-5)
-        v103.Text = tostring(v100.Value)
-        
-        if v100.Flag then
-            PhoenixUI.Flags[v100.Flag] = v100.Value
-        end
-        v100.Callback(v100.Value)
-    end
-
-    if v100.Flag then
-        PhoenixUI.Flags[v100.Flag] = v100.Value
-    end
-
-    table.insert(v62.Elements, v100)
-    return v100
 end
 
 return PhoenixUI
