@@ -383,25 +383,21 @@ function PhoenixUI:Window(v28)
                 v73.TextXAlignment = Enum.TextXAlignment.Left
                 v73.Parent = v71
 
-                function v70:Set(v75)
-                    v70.Value = v75
-                    if v75 then
+                function v70:Toggle()
+                    v70.Value = not v70.Value
+                    if v70.Value then
                         v72.BackgroundColor3 = PhoenixUI.Accent
                     else
                         v72.BackgroundColor3 = Color3.fromRGB(100,100,100)
                     end
                     if v70.Flag then
-                        PhoenixUI.Flags[v70.Flag] = v75
+                        PhoenixUI.Flags[v70.Flag] = v70.Value
                     end
-                    v70.Callback(v75)
+                    v70.Callback(v70.Value)
                 end
 
                 PhoenixUI:v6(v72.MouseButton1Click,function()
-                    v70:Set(not v70.Value)
-                end)
-
-                PhoenixUI:v6(v72.TouchTap,function()
-                    v70:Set(not v70.Value)
+                    v70:Toggle()
                 end)
 
                 if v70.Flag then
@@ -410,7 +406,6 @@ function PhoenixUI:Window(v28)
 
                 return v70
             end
-
             function v62:Button(v77)
                 v77 = v77 or {}
                 local v78 = {
