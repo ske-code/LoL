@@ -1,4 +1,4 @@
-local PhoenixUI = {}
+v49hoenixUI = {}
 PhoenixUI.Open = true
 PhoenixUI.Accent = Color3.fromRGB(255, 182, 193)
 PhoenixUI.ThemeObjects = {}
@@ -356,18 +356,20 @@ function PhoenixUI:Window(v28)
                 }
 
                 local v71 = PhoenixUI:v24("TextButton",false)
-                v71.BackgroundColor3 = v70.Value and PhoenixUI.Accent or Color3.fromRGB(45,45,45)
+                v71.BackgroundColor3 = Color3.fromRGB(45,45,45)
                 v71.BorderSizePixel = 0  
                 v71.Size = UDim2.new(1,-10,0,25)
                 v71.Text = ""
                 v71.AutoButtonColor = false
                 v71.Parent = v66
 
-                local v72 = PhoenixUI:v24("Frame",false)
-                v72.BackgroundColor3 = v70.Value and PhoenixUI.Accent or Color3.fromRGB(60,60,60)
+                local v72 = PhoenixUI:v24("TextButton",false)
+                v72.BackgroundColor3 = v70.Value and PhoenixUI.Accent or Color3.fromRGB(100,100,100)
                 v72.BorderSizePixel = 0 
                 v72.Position = UDim2.new(0,5,0,5)
                 v72.Size = UDim2.new(0,15,0,15)
+                v72.Text = ""
+                v72.AutoButtonColor = false
                 v72.Parent = v71
 
                 local v73 = PhoenixUI:v24("TextLabel",false)
@@ -385,10 +387,8 @@ function PhoenixUI:Window(v28)
                     v70.Value = v75
                     if v75 then
                         v72.BackgroundColor3 = PhoenixUI.Accent
-                        v71.BackgroundColor3 = PhoenixUI.Accent
                     else
-                        v72.BackgroundColor3 = Color3.fromRGB(60,60,60)
-                        v71.BackgroundColor3 = Color3.fromRGB(45,45,45)
+                        v72.BackgroundColor3 = Color3.fromRGB(100,100,100)
                     end
                     if v70.Flag then
                         PhoenixUI.Flags[v70.Flag] = v75
@@ -396,11 +396,11 @@ function PhoenixUI:Window(v28)
                     v70.Callback(v75)
                 end
 
-                PhoenixUI:v6(v71.MouseButton1Click,function()
+                PhoenixUI:v6(v72.MouseButton1Click,function()
                     v70:Set(not v70.Value)
                 end)
 
-                PhoenixUI:v6(v71.TouchTap,function()
+                PhoenixUI:v6(v72.TouchTap,function()
                     v70:Set(not v70.Value)
                 end)
 
