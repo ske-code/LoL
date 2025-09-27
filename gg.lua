@@ -1,6 +1,6 @@
 local PhoenixUI = {}
 PhoenixUI.Open = true
-PhoenixUI.Accent = Color3.fromRGB(85,170,255)
+PhoenixUI.Accent = Color3.fromRGB(255, 182, 193)
 PhoenixUI.ThemeObjects = {}
 PhoenixUI.Flags = {}
 PhoenixUI.Holder = nil
@@ -91,7 +91,7 @@ function PhoenixUI:Window(v28)
     v31.Name = "MainFrame"
     v31.AnchorPoint = Vector2.new(0.5,0.5)
     v31.Position = UDim2.new(0.5,0,0.5,0)
-    v31.Size = UDim2.new(0,650,0,500)
+    v31.Size = UDim2.new(0,650,0,700)
     v31.Text = ""
     v31.AutoButtonColor = false
     v31.Parent = v30
@@ -344,19 +344,20 @@ function PhoenixUI:Window(v28)
                     Callback = v69.Callback or function() end
                 }
 
-                local v71 = PhoenixUI:v24("Frame",false)
-                v71.BackgroundColor3 = Color3.fromRGB(45,45,45)
-                v71.Size = UDim2.new(1,-10,0,25)
-                v71.Parent = v66
+                
 
-                local v72 = PhoenixUI:v24("TextButton",false)
+                local v71 = PhoenixUI:v24("TextButton",false)
                 v72.BackgroundColor3 = Color3.fromRGB(60,60,60)
                 v72.Position = UDim2.new(0,5,0,5)
                 v72.Size = UDim2.new(0,15,0,15)
                 v72.Text = ""
                 v72.AutoButtonColor = false
-                v72.Parent = v71
-
+                v72.Parent = v66
+                
+                local v71 = PhoenixUI:v24("Frame",false)
+                v71.BackgroundColor3 = Color3.fromRGB(45,45,45)
+                v71.Size = UDim2.new(1,-10,0,25)
+                v71.Parent = v71
                 local v73 = PhoenixUI:v24("Frame",true)
                 v73.BackgroundColor3 = PhoenixUI.Accent
                 v73.Position = UDim2.new(0,2,0,2)
