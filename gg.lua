@@ -395,10 +395,10 @@ function PhoenixUI:Window(v28)
                 end
 
                 local function v76()
-                    PhoenixUI:v6(v72.MouseButton1Click,function()
+                    PhoenixUI:v6(v71.MouseButton1Click,function()
                         v70:Set(not v73.Visible)
                     end)
-                    PhoenixUI:v6(v72.TouchTap,function()
+                    PhoenixUI:v6(v71.TouchTap,function()
                         v70:Set(not v73.Visible)
                     end)
                 end
