@@ -356,7 +356,7 @@ function PhoenixUI:Window(v28)
                 }
 
                 local v71 = PhoenixUI:v24("TextButton",false)
-                v71.BackgroundColor3 = Color3.fromRGB(45,45,45)
+                v71.BackgroundColor3 = v70.Value and PhoenixUI.Accent or Color3.fromRGB(45,45,45)
                 v71.BorderSizePixel = 0  
                 v71.Size = UDim2.new(1,-10,0,25)
                 v71.Text = ""
@@ -385,8 +385,10 @@ function PhoenixUI:Window(v28)
                     v70.Value = v75
                     if v75 then
                         v72.BackgroundColor3 = PhoenixUI.Accent
+                        v71.BackgroundColor3 = PhoenixUI.Accent
                     else
                         v72.BackgroundColor3 = Color3.fromRGB(60,60,60)
+                        v71.BackgroundColor3 = Color3.fromRGB(45,45,45)
                     end
                     if v70.Flag then
                         PhoenixUI.Flags[v70.Flag] = v75
