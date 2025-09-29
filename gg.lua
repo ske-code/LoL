@@ -820,7 +820,7 @@ function PhoenixUI:Window(v28)
     end
 
 
-    table.insert(v62.Elements, v100)
+    --table.insert(v62.Elements, v100)
     return v100
 end
 
