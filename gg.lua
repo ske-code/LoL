@@ -774,11 +774,12 @@ function PhoenixUI:Window(v28)
 
                 return v100
             end
-            function v62:Colorpicker(v118)
+           function v62:Colorpicker(v118)
                 v118 = v118 or {}
                 local v119 = {
                     Text = v118.Text or "Colorpicker",
                     Default = v118.Default or Color3.fromRGB(255,255,255),
+                    Transparency = v118.Transparency or 0,
                     Flag = v118.Flag,
                     Callback = v118.Callback or function() end,
                     Value = v118.Default or Color3.fromRGB(255,255,255),
@@ -820,13 +821,14 @@ function PhoenixUI:Window(v28)
 
                 local v125 = PhoenixUI:v24("Frame",false)
                 v125.BackgroundColor3 = Color3.fromRGB(40,40,40)
-                v125.Size = UDim2.new(1,0,0,180)
+                v125.Size = UDim2.new(1,0,0,200)
                 v125.Position = UDim2.new(0,0,1,0)
                 v125.Visible = false
                 v125.Parent = v120
 
+                
                 local v126 = PhoenixUI:v24("ImageLabel",false)
-                v126.Image = "rbxassetid://14204231522"
+                v126.Image = "rbxassetid://4155801252"
                 v126.Size = UDim2.new(0,130,0,130)
                 v126.Position = UDim2.new(0,10,0,10)
                 v126.BorderSizePixel = 0
@@ -838,27 +840,8 @@ function PhoenixUI:Window(v28)
                 v127.BorderSizePixel = 0
                 v127.Parent = v126
 
-                local v128 = PhoenixUI:v24("UIGradient",false)
-                v128.Color = ColorSequence.new{
-                    ColorSequenceKeypoint.new(0, Color3.new(1,1,1)),
-                    ColorSequenceKeypoint.new(1, Color3.new(1,1,1))
-                }
-                v128.Rotation = 90
-                v128.Parent = v126
-
-                local v129 = PhoenixUI:v24("UIGradient",false)
-                v129.Color = ColorSequence.new{
-                    ColorSequenceKeypoint.new(0, Color3.new(0,0,0)),
-                    ColorSequenceKeypoint.new(1, Color3.new(0,0,0))
-                }
-                v129.Transparency = NumberSequence.new{
-                    NumberSequenceKeypoint.new(0, 0),
-                    NumberSequenceKeypoint.new(1, 1)
-                }
-                v129.Parent = v126
-
+                
                 local v130 = PhoenixUI:v24("Frame",false)
-                v130.BackgroundColor3 = v119.Value
                 v130.Size = UDim2.new(0,20,0,130)
                 v130.Position = UDim2.new(0,150,0,10)
                 v130.BorderSizePixel = 0
@@ -883,6 +866,7 @@ function PhoenixUI:Window(v28)
                 v132.BorderSizePixel = 0
                 v132.Parent = v130
 
+                
                 local v133 = PhoenixUI:v24("TextBox",false)
                 v133.BackgroundColor3 = Color3.fromRGB(30,30,30)
                 v133.Size = UDim2.new(1,-20,0,20)
@@ -895,29 +879,36 @@ function PhoenixUI:Window(v28)
                 v133.Parent = v125
 
                 
-                local v_dragMain = false
-                local v_dragHue = false
+                local draggingMain = false
+                local draggingHue = false
 
-                local function UpdateFromRGB(r,g,b)
-                    local c = Color3.fromRGB(r,g,b)
-                    v119:Set(c)
-                end
-
-                local function UpdateFromHSV(h,s,v)
-                    local c = Color3.fromHSV(h,s,v)
-                    v119:Set(c)
+                local function UpdateColor(color)
+                    v119.Value = color
+                    v122.BackgroundColor3 = color
+                    if v119.Flag then
+                        PhoenixUI.Flags[v119.Flag] = color
+                    end
+                    v119.Callback(color)
                 end
 
                 local function ParseInput(text)
-                    local parts = {}
-                    for val in string.gmatch(text,"[^,]+") do
-                        table.insert(parts,tonumber(val))
-                    end
-                    if #parts == 3 then
-                        if parts[1] > 1 or parts[2] > 1 or parts[3] > 1 then
-                            UpdateFromRGB(parts[1],parts[2],parts[3])
-                        else
-                            UpdateFromHSV(parts[1],parts[2],parts[3])
+                    if string.find(text,"#") then
+                        local hex = text:gsub("#","")
+                        local r = tonumber(hex:sub(1,2),16)
+                        local g = tonumber(hex:sub(3,4),16)
+                        local b = tonumber(hex:sub(5,6),16)
+                        UpdateColor(Color3.fromRGB(r,g,b))
+                    else
+                        local parts = {}
+                        for val in string.gmatch(text,"[^,]+") do
+                            table.insert(parts,tonumber(val))
+                        end
+                        if #parts == 3 then
+                            if parts[1] <= 1 and parts[2] <= 1 and parts[3] <= 1 then
+                                UpdateColor(Color3.fromHSV(parts[1],parts[2],parts[3]))
+                            else
+                                UpdateColor(Color3.fromRGB(parts[1],parts[2],parts[3]))
+                            end
                         end
                     end
                 end
@@ -926,112 +917,27 @@ function PhoenixUI:Window(v28)
                     ParseInput(v133.Text)
                 end)
 
-                local function v135(v136)
-                    local v138 = math.clamp((v136.X - v126.AbsolutePosition.X) / v126.AbsoluteSize.X, 0, 1)
-                    local v139 = math.clamp((v136.Y - v126.AbsolutePosition.Y) / v126.AbsoluteSize.Y, 0, 1)
-                    local h = 1 - v139
-                    local s = v138
-                    local v = 1
-                    UpdateFromHSV(h,s,v)
-                    v127.Position = UDim2.new(s,-2.5,1-h,-2.5)
-                end
-
-                local function v141(v142)
-                    local v143 = math.clamp((v142.Y - v130.AbsolutePosition.Y) / v130.AbsoluteSize.Y, 0, 1)
-                    local h = 1 - v143
-                    v128.Color = ColorSequence.new(Color3.fromHSV(h,1,1))
-                    v132.Position = UDim2.new(0,0,v143,-1)
-                    if v_dragMain then
-                        v135(v142)
-                    end
-                end
-
-                PhoenixUI:v6(v126.InputBegan,function(v148)
-                    if v148.UserInputType == Enum.UserInputType.MouseButton1 or v148.UserInputType == Enum.UserInputType.Touch then
-                        v_dragMain = true
-                        v135(v148.Position)
-                    end
-                end)
-
-                PhoenixUI:v6(v130.InputBegan,function(v151)
-                    if v151.UserInputType == Enum.UserInputType.MouseButton1 or v151.UserInputType == Enum.UserInputType.Touch then
-                        v_dragHue = true
-                        v141(v151.Position)
-                    end
-                end)
-
-                PhoenixUI:v6(v4.InputChanged,function(v149)
-                    if v_dragMain and (v149.UserInputType == Enum.UserInputType.MouseMovement or v149.UserInputType == Enum.UserInputType.Touch) then
-                        v135(v149.Position)
-                    elseif v_dragHue and (v149.UserInputType == Enum.UserInputType.MouseMovement or v149.UserInputType == Enum.UserInputType.Touch) then
-                        v141(v149.Position)
-                    end
-                end)
-
-                PhoenixUI:v6(v4.InputEnded,function(v150)
-                    if v150.UserInputType == Enum.UserInputType.MouseButton1 or v150.UserInputType == Enum.UserInputType.Touch then
-                        v_dragMain = false
-                        v_dragHue = false
-                    end
-                end)
-
-                function v119:Open()
-                    if v119.Open then return end
-                    v119.Open = true
-                    v125.Visible = true
-                    v120.Size = UDim2.new(1,-10,0,210)
-                    v124.Rotation = 180
-                end
-
-                function v119:Close()
-                    if not v119.Open then return end
-                    v119.Open = false
-                    v125.Visible = false
-                    v120.Size = UDim2.new(1,-10,0,30)
-                    v124.Rotation = 0
-                end
-
                 PhoenixUI:v6(v121.MouseButton1Click,function()
-                    if v119.Open then
-                        v119:Close()
-                    else
-                        v119:Open()
-                    end
+                    v119.Open = not v119.Open
+                    v125.Visible = v119.Open
+                    v120.Size = v119.Open and UDim2.new(1,-10,0,230) or UDim2.new(1,-10,0,30)
+                    v124.Rotation = v119.Open and 180 or 0
                 end)
 
-                PhoenixUI:v6(v121.TouchTap,function()
-                    if v119.Open then
-                        v119:Close()
-                    else
-                        v119:Open()
-                    end
-                end)
-
-                function v119:Set(v158)
-                    v119.Value = v158
-                    v122.BackgroundColor3 = v158
-                    local h,s,v = v158:ToHSV()
-                    v127.Position = UDim2.new(s,-2.5,1-h,-2.5)
-                    v132.Position = UDim2.new(0,0,1-h,-1)
-                    v128.Color = ColorSequence.new(Color3.fromHSV(h,1,1))
-                    local r,g,b = math.floor(v158.R*255),math.floor(v158.G*255),math.floor(v158.B*255)
+                function v119:Set(color)
+                    UpdateColor(color)
+                    local r,g,b = math.floor(color.R*255),math.floor(color.G*255),math.floor(color.B*255)
                     v133.Text = r..","..g..","..b
-                    if v119.Flag then
-                        PhoenixUI.Flags[v119.Flag] = v119.Value
-                    end
-                    v119.Callback(v119.Value)
                 end
 
                 if v119.Flag then
                     PhoenixUI.Flags[v119.Flag] = v119.Value
                 end
-
                 v119:Set(v119.Value)
+
                 return v119
             end
-            v48.Sections[#v48.Sections + 1] = v62
-            return v62
-        end
+         
         
         if #v29.Pages == 0 then
             v48:SetActive(true)
