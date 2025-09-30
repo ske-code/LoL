@@ -282,74 +282,117 @@ function PhoenixUI:Window(v28)
         v56()
 
         function v48:Section(v61)
-            v61 = v61 or {}
-            local v62 = {
-                Name = v61.Name or "Section",
-                Page = self,
-                Side = v61.Side or "Left",
-                Elements = {}
-            }
+                v61 = v61 or {}
+                local v62 = {
+                    Name = v61.Name or "Section",
+                    Page = self,
+                    Side = v61.Side or "Left",
+                    Elements = {}
+                }
 
-            local v63 = PhoenixUI:v24("Frame",false)
-            v63.BackgroundColor3 = Color3.fromRGB(35,35,35)
-            v63.Size = UDim2.new(0.48,0,0,0)
-            v63.AutomaticSize = Enum.AutomaticSize.Y
-            v63.BorderSizePixel = 0
-            v63.Parent = v52
+                if not self.Elements.LeftContainer then
+                    self.Elements.LeftContainer = PhoenixUI:v24("Frame",false)
+                    self.Elements.LeftContainer.BackgroundTransparency = 1
+                    self.Elements.LeftContainer.Size = UDim2.new(0.48,0,0,0)
+                    self.Elements.LeftContainer.AutomaticSize = Enum.AutomaticSize.Y
+                    self.Elements.LeftContainer.LayoutOrder = 1
+                    self.Elements.LeftContainer.Parent = v52
+                    
+                    local v200 = PhoenixUI:v24("UIListLayout",false)
+                    v200.Padding = UDim.new(0,15)
+                    v200.SortOrder = Enum.SortOrder.LayoutOrder
+                    v200.Parent = self.Elements.LeftContainer
+                    
+                    local v201 = PhoenixUI:v24("UIPadding",false)
+                    v201.PaddingBottom = UDim.new(0,5)
+                    v201.Parent = self.Elements.LeftContainer
+                end
+                
+                if not self.Elements.RightContainer then
+                    self.Elements.RightContainer = PhoenixUI:v24("Frame",false)
+                    self.Elements.RightContainer.BackgroundTransparency = 1
+                    self.Elements.RightContainer.Size = UDim2.new(0.48,0,0,0)
+                    self.Elements.RightContainer.AutomaticSize = Enum.AutomaticSize.Y
+                    self.Elements.RightContainer.LayoutOrder = 2
+                    self.Elements.RightContainer.Parent = v52
+                    
+                    local v202 = PhoenixUI:v24("UIListLayout",false)
+                    v202.Padding = UDim.new(0,15)
+                    v202.SortOrder = Enum.SortOrder.LayoutOrder
+                    v202.Parent = self.Elements.RightContainer
+                    
+                    local v203 = PhoenixUI:v24("UIPadding",false)
+                    v203.PaddingBottom = UDim.new(0,5)
+                    v203.Parent = self.Elements.RightContainer
+                end
 
-            local v67 = PhoenixUI:v24("UIListLayout",false)
-            v67.FillDirection = Enum.FillDirection.Horizontal
-            v67.Padding = UDim.new(0,10)
-            v67.SortOrder = Enum.SortOrder.LayoutOrder
-            v67.Parent = v52
+                if not v52:FindFirstChild("PageLayout") then
+                    local v204 = PhoenixUI:v24("UIListLayout",false)
+                    v204.Name = "PageLayout"
+                    v204.FillDirection = Enum.FillDirection.Horizontal
+                    v204.Padding = UDim.new(0,10)
+                    v204.SortOrder = Enum.SortOrder.LayoutOrder
+                    v204.HorizontalAlignment = Enum.HorizontalAlignment.Center
+                    v204.VerticalAlignment = Enum.VerticalAlignment.Top
+                    v204.Parent = v52
+                end
 
-            if v62.Side == "Right" then
-                v63.LayoutOrder = 2
-            else
-                v63.LayoutOrder = 1
-            end
+                local v63 = PhoenixUI:v24("Frame",false)
+                v63.BackgroundColor3 = Color3.fromRGB(35,35,35)
+                v63.Size = UDim2.new(1,0,0,0)
+                v63.AutomaticSize = Enum.AutomaticSize.Y
+                v63.BorderSizePixel = 0
 
-            local v64 = PhoenixUI:v24("TextLabel",false)
-            v64.Text = v62.Name
-            v64.TextColor3 = Color3.fromRGB(255,255,255)
-            v64.FontFace = PhoenixUI.UIFont
-            v64.TextSize = 14
-            v64.BackgroundTransparency = 1
-            v64.Size = UDim2.new(1,-10,0,25)
-            v64.Position = UDim2.new(0,5,0,5)
-            v64.TextXAlignment = Enum.TextXAlignment.Left
-            v64.Parent = v63
+                if v62.Side == "Right" then
+                    v63.Parent = self.Elements.RightContainer
+                else
+                    v63.Parent = self.Elements.LeftContainer
+                end
 
-            local v65 = PhoenixUI:v24("Frame",true)
-            v65.BackgroundColor3 = PhoenixUI.Accent
-            v65.Size = UDim2.new(1,0,0,1)
-            v65.Position = UDim2.new(0,0,0,30)
-            v65.BorderSizePixel = 0
-            v65.Parent = v63
+                local v64 = PhoenixUI:v24("TextLabel",false)
+                v64.Text = v62.Name
+                v64.TextColor3 = Color3.fromRGB(255,255,255)
+                v64.FontFace = PhoenixUI.UIFont
+                v64.TextSize = 14
+                v64.BackgroundTransparency = 1
+                v64.Size = UDim2.new(1,-10,0,25)
+                v64.Position = UDim2.new(0,5,0,5)
+                v64.TextXAlignment = Enum.TextXAlignment.Left
+                v64.Parent = v63
 
-            local v66 = PhoenixUI:v24("Frame",false)
-            v66.BackgroundTransparency = 1
-            v66.Size = UDim2.new(1,0,0,0)
-            v66.Position = UDim2.new(0,0,0,35)
-            v66.AutomaticSize = Enum.AutomaticSize.Y
-            v66.BorderSizePixel = 0
-            v66.Parent = v63
+                local v65 = PhoenixUI:v24("Frame",true)
+                v65.BackgroundColor3 = PhoenixUI.Accent
+                v65.Size = UDim2.new(1,0,0,1)
+                v65.Position = UDim2.new(0,0,0,30)
+                v65.BorderSizePixel = 0
+                v65.Parent = v63
 
-            local v68 = PhoenixUI:v24("UIListLayout",false)
-            v68.Padding = UDim.new(0,8)
-            v68.SortOrder = Enum.SortOrder.LayoutOrder
-            v68.Parent = v66
+                local v66 = PhoenixUI:v24("Frame",false)
+                v66.BackgroundTransparency = 1
+                v66.Size = UDim2.new(1,0,0,0)
+                v66.Position = UDim2.new(0,0,0,35)
+                v66.AutomaticSize = Enum.AutomaticSize.Y
+                v66.BorderSizePixel = 0
+                v66.Parent = v63
 
-            local v69 = PhoenixUI:v24("UIPadding",false)
-            v69.PaddingLeft = UDim.new(0,5)
-            v69.PaddingTop = UDim.new(0,5)
-            v69.PaddingBottom = UDim.new(0,5)
-            v69.Parent = v66
+                local v68 = PhoenixUI:v24("UIListLayout",false)
+                v68.Padding = UDim.new(0,8)
+                v68.SortOrder = Enum.SortOrder.LayoutOrder
+                v68.Parent = v66
 
-            v62.Elements = {
-                Main = v63,
-                Content = v66
-            }
+                local v69 = PhoenixUI:v24("UIPadding",false)
+                v69.PaddingLeft = UDim.new(0,5)
+                v69.PaddingTop = UDim.new(0,5)
+                v69.PaddingBottom = UDim.new(0,5)
+                v69.Parent = v66
+
+                v62.Elements = {
+                    Main = v63,
+                    Content = v66
+                }
+
+                return v62
+
             function v62:Checkbox(v69)
                 v69 = v69 or {}
                 local v70 = {
