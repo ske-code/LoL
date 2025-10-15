@@ -576,26 +576,17 @@ v43.content.BackgroundTransparency=1
 
 v43.content.Parent=v43.frame
 
-local v45=0
-
 function v43:UpdateLayout()
-
-v45=0
-
-for v46,v47 in pairs(v43.content:GetChildren())do
-
-if v47:IsA("Frame")then
-
-v47.Position=UDim2.new(0,0,0,v45)
-
-v45=v45+v47.AbsoluteSize.Y+5
-
-end
-
-end
-
-v34:UpdateContainer(v44)
-
+    v45 = 0
+    for v46, v47 in pairs(v43.content:GetChildren()) do
+        if v47:IsA("Frame") then
+            v47.Position = UDim2.new(0, 0, 0, v45)
+            v45 = v45 + v47.AbsoluteSize.Y + 5
+        end
+    end
+    local newHeight = math.max(150, v45 + 30)
+    v43.frame.Size = UDim2.new(1, 0, 0, newHeight)
+    v34:UpdateContainer(v44)
 end
 
 if v43.side=="left"then
@@ -650,40 +641,47 @@ function v43:Slider(v48, v49, v50, v51, v52)
     local v58 = false
     local v59 = v51 or v49
 
-    local function v60(v61)
-        local v62 = math.clamp((v61 - v55.AbsolutePosition.X) / v55.AbsoluteSize.X, 0, 1)
-        v59 = math.floor(v49 + (v50 - v49) * v62)
-        v56.Size = UDim2.new(v62, 0, 1, 0)
+    local function v60(input)
+        local mouse = v3:GetMouseLocation()
+        local absoluteX = mouse.X
+        local relative = math.clamp((absoluteX - v55.AbsolutePosition.X) / v55.AbsoluteSize.X, 0, 1)
+        v59 = math.floor(v49 + (v50 - v49) * relative)
+        v56.Size = UDim2.new(relative, 0, 1, 0)
         v57.Text = tostring(v59)
         if v52 then v52(v59) end
     end
 
-    v55.InputBegan:Connect(function(v63)
-        if v63.UserInputType == Enum.UserInputType.MouseButton1 then
+    v55.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
             v58 = true
-            v60(v63.Position.X)
+            v60(input)
         end
     end)
 
-    v55.InputEnded:Connect(function(v64)
-        if v64.UserInputType == Enum.UserInputType.MouseButton1 then
+    v55.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
             v58 = false
         end
     end)
 
-    v3.InputChanged:Connect(function(v65)
-        if v58 and v65.UserInputType == Enum.UserInputType.MouseMovement then
-            v60(v65.Position.X)
+    v3.InputChanged:Connect(function(input)
+        if v58 and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+            v60(input)
         end
     end)
 
     v43:UpdateLayout()
     local v66 = {}
     function v66:Set(v67)
-        v60(v55.AbsolutePosition.X + (v55.AbsoluteSize.X * ((v67 - v49) / (v50 - v49))))
+        local relative = (v67 - v49) / (v50 - v49)
+        v59 = v67
+        v56.Size = UDim2.new(relative, 0, 1, 0)
+        v57.Text = tostring(v67)
+        if v52 then v52(v67) end
     end
     return v66
 end
+
 function v43:Dropdown(v68, v69, v70)
     local v71 = Instance.new("Frame")
     v71.Size = UDim2.new(1, 0, 0, 30)
@@ -728,17 +726,36 @@ function v43:Dropdown(v68, v69, v70)
             v73.Visible = false
             if v70 then v70(v75) end
         end)
+        
+        v76.TouchTap:Connect(function()
+            v72.Text = v68 .. ": " .. v75
+            v73.Visible = false
+            if v70 then v70(v75) end
+        end)
     end
 
     v72.MouseButton1Click:Connect(function()
         v73.Visible = not v73.Visible
     end)
+    
+    v72.TouchTap:Connect(function()
+        v73.Visible = not v73.Visible
+    end)
+
+    v3.InputBegan:Connect(function(input)
+        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
+            if v73.Visible and not v72:IsDescendantOf(input.Target) and not v73:IsDescendantOf(input.Target) then
+                v73.Visible = false
+            end
+        end
+    end)
 
     v43:UpdateLayout()
-end  
+end
+
 function v43:ColorPicker(v77, v78, v79)
     local v80 = Instance.new("Frame")
-    v80.Size = UDim2.new(1, 0, 0, 100)
+    v80.Size = UDim2.new(1, 0, 0, 120)
     v80.BackgroundTransparency = 1
     v80.Parent = v43.content
 
@@ -752,14 +769,23 @@ function v43:ColorPicker(v77, v78, v79)
     v81.TextXAlignment = Enum.TextXAlignment.Left
     v81.Parent = v80
 
+    local colorDisplay = Instance.new("Frame")
+    colorDisplay.Size = UDim2.new(1, 0, 0, 20)
+    colorDisplay.Position = UDim2.new(0, 0, 0, 15)
+    colorDisplay.BackgroundColor3 = v78
+    colorDisplay.BorderSizePixel = 1
+    colorDisplay.BorderColor3 = Color3.fromRGB(60, 60, 70)
+    colorDisplay.Parent = v80
+
     local v82, v83, v84 = v78.R * 255, v78.G * 255, v78.B * 255
 
     local function v85()
         local v86 = Color3.fromRGB(v82, v83, v84)
+        colorDisplay.BackgroundColor3 = v86
         if v79 then v79(v86) end
     end
 
-    local function v87(v88, v89, v90, v91)
+    local function createColorSlider(v88, v89, v90, v91)
         local v92 = Instance.new("Frame")
         v92.Size = UDim2.new(1, 0, 0, 15)
         v92.Position = UDim2.new(0, 0, 0, v89)
@@ -786,37 +812,39 @@ function v43:ColorPicker(v77, v78, v79)
 
         local v95 = false
 
-        local function v96(v97)
-            local v98 = math.clamp((v97 - v92.AbsolutePosition.X) / v92.AbsoluteSize.X, 0, 1)
-            local v99 = math.floor(255 * v98)
-            v93.Size = UDim2.new(v98, 0, 1, 0)
-            v94.Text = v88 .. ": " .. tostring(v99)
-            v91(v99)
+        local function v96(input)
+            local mouse = v3:GetMouseLocation()
+            local absoluteX = mouse.X
+            local relative = math.clamp((absoluteX - v92.AbsolutePosition.X) / v92.AbsoluteSize.X, 0, 1)
+            local value = math.floor(255 * relative)
+            v93.Size = UDim2.new(relative, 0, 1, 0)
+            v94.Text = v88 .. ": " .. tostring(value)
+            v91(value)
         end
 
-        v92.InputBegan:Connect(function(v100)
-            if v100.UserInputType == Enum.UserInputType.MouseButton1 then
+        v92.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                 v95 = true
-                v96(v100.Position.X)
+                v96(input)
             end
         end)
 
-        v92.InputEnded:Connect(function(v101)
-            if v101.UserInputType == Enum.UserInputType.MouseButton1 then
+        v92.InputEnded:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
                 v95 = false
             end
         end)
 
-        v3.InputChanged:Connect(function(v102)
-            if v95 and v102.UserInputType == Enum.UserInputType.MouseMovement then
-                v96(v102.Position.X)
+        v3.InputChanged:Connect(function(input)
+            if v95 and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+                v96(input)
             end
         end)
     end
 
-    v87("R", 20, v82, function(v103) v82 = v103 v85() end)
-    v87("G", 45, v83, function(v104) v83 = v104 v85() end)
-    v87("B", 70, v84, function(v105) v84 = v105 v85() end)
+    createColorSlider("R", 40, v82, function(value) v82 = value v85() end)
+    createColorSlider("G", 65, v83, function(value) v83 = value v85() end)
+    createColorSlider("B", 90, v84, function(value) v84 = value v85() end)
 
     v43:UpdateLayout()
 end
