@@ -738,10 +738,6 @@ function v43:Dropdown(v68, v69, v70)
         v73.Visible = not v73.Visible
     end)
     
-    v72.TouchTap:Connect(function()
-        v73.Visible = not v73.Visible
-    end)
-
     v3.InputBegan:Connect(function(input)
         if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
             if v73.Visible and not v72:IsDescendantOf(input.Target) and not v73:IsDescendantOf(input.Target) then
