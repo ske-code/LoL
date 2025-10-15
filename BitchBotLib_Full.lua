@@ -607,7 +607,219 @@ else
 table.insert(v34.rightSections,v43)
 
 end
+function v43:Slider(v48, v49, v50, v51, v52)
+    local v53 = Instance.new("Frame")
+    v53.Size = UDim2.new(1, 0, 0, 40)
+    v53.BackgroundTransparency = 1
+    v53.Parent = v43.content
 
+    local v54 = Instance.new("TextLabel")
+    v54.Size = UDim2.new(1, 0, 0, 15)
+    v54.BackgroundTransparency = 1
+    v54.Text = v48
+    v54.TextColor3 = Color3.new(1, 1, 1)
+    v54.TextSize = 12
+    v54.FontFace = v21
+    v54.TextXAlignment = Enum.TextXAlignment.Left
+    v54.Parent = v53
+
+    local v55 = Instance.new("Frame")
+    v55.Size = UDim2.new(1, 0, 0, 15)
+    v55.Position = UDim2.new(0, 0, 0, 20)
+    v55.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+    v55.BorderSizePixel = 1
+    v55.BorderColor3 = Color3.fromRGB(60, 60, 70)
+    v55.Parent = v53
+
+    local v56 = Instance.new("Frame")
+    v56.Size = UDim2.new((v51 - v49) / (v50 - v49), 0, 1, 0)
+    v56.BackgroundColor3 = Color3.fromRGB(255, 105, 180)
+    v56.BorderSizePixel = 0
+    v56.Parent = v55
+
+    local v57 = Instance.new("TextLabel")
+    v57.Size = UDim2.new(1, 0, 1, 0)
+    v57.BackgroundTransparency = 1
+    v57.Text = tostring(v51)
+    v57.TextColor3 = Color3.new(1, 1, 1)
+    v57.TextSize = 12
+    v57.FontFace = v21
+    v57.TextXAlignment = Enum.TextXAlignment.Center
+    v57.Parent = v55
+
+    local v58 = false
+    local v59 = v51 or v49
+
+    local function v60(v61)
+        local v62 = math.clamp((v61 - v55.AbsolutePosition.X) / v55.AbsoluteSize.X, 0, 1)
+        v59 = math.floor(v49 + (v50 - v49) * v62)
+        v56.Size = UDim2.new(v62, 0, 1, 0)
+        v57.Text = tostring(v59)
+        if v52 then v52(v59) end
+    end
+
+    v55.InputBegan:Connect(function(v63)
+        if v63.UserInputType == Enum.UserInputType.MouseButton1 then
+            v58 = true
+            v60(v63.Position.X)
+        end
+    end)
+
+    v55.InputEnded:Connect(function(v64)
+        if v64.UserInputType == Enum.UserInputType.MouseButton1 then
+            v58 = false
+        end
+    end)
+
+    v3.InputChanged:Connect(function(v65)
+        if v58 and v65.UserInputType == Enum.UserInputType.MouseMovement then
+            v60(v65.Position.X)
+        end
+    end)
+
+    v43:UpdateLayout()
+    local v66 = {}
+    function v66:Set(v67)
+        v60(v55.AbsolutePosition.X + (v55.AbsoluteSize.X * ((v67 - v49) / (v50 - v49))))
+    end
+    return v66
+end
+function v43:Dropdown(v68, v69, v70)
+    local v71 = Instance.new("Frame")
+    v71.Size = UDim2.new(1, 0, 0, 30)
+    v71.BackgroundTransparency = 1
+    v71.Parent = v43.content
+
+    local v72 = Instance.new("TextButton")
+    v72.Size = UDim2.new(1, 0, 1, 0)
+    v72.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+    v72.BorderSizePixel = 1
+    v72.BorderColor3 = Color3.fromRGB(60, 60, 70)
+    v72.Text = v68
+    v72.TextColor3 = Color3.new(1, 1, 1)
+    v72.TextSize = 12
+    v72.FontFace = v21
+    v72.Parent = v71
+
+    local v73 = Instance.new("Frame")
+    v73.Size = UDim2.new(1, 0, 0, #v69 * 25)
+    v73.Position = UDim2.new(0, 0, 1, 2)
+    v73.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+    v73.BorderSizePixel = 1
+    v73.BorderColor3 = Color3.fromRGB(60, 60, 70)
+    v73.Visible = false
+    v73.ZIndex = 10
+    v73.Parent = v71
+
+    for v74, v75 in ipairs(v69) do
+        local v76 = Instance.new("TextButton")
+        v76.Size = UDim2.new(1, 0, 0, 25)
+        v76.Position = UDim2.new(0, 0, 0, (v74 - 1) * 25)
+        v76.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+        v76.BorderSizePixel = 0
+        v76.Text = v75
+        v76.TextColor3 = Color3.new(1, 1, 1)
+        v76.TextSize = 12
+        v76.FontFace = v21
+        v76.Parent = v73
+
+        v76.MouseButton1Click:Connect(function()
+            v72.Text = v68 .. ": " .. v75
+            v73.Visible = false
+            if v70 then v70(v75) end
+        end)
+    end
+
+    v72.MouseButton1Click:Connect(function()
+        v73.Visible = not v73.Visible
+    end)
+
+    v43:UpdateLayout()
+end  
+function v43:ColorPicker(v77, v78, v79)
+    local v80 = Instance.new("Frame")
+    v80.Size = UDim2.new(1, 0, 0, 100)
+    v80.BackgroundTransparency = 1
+    v80.Parent = v43.content
+
+    local v81 = Instance.new("TextLabel")
+    v81.Size = UDim2.new(1, 0, 0, 15)
+    v81.BackgroundTransparency = 1
+    v81.Text = v77
+    v81.TextColor3 = Color3.new(1, 1, 1)
+    v81.TextSize = 12
+    v81.FontFace = v21
+    v81.TextXAlignment = Enum.TextXAlignment.Left
+    v81.Parent = v80
+
+    local v82, v83, v84 = v78.R * 255, v78.G * 255, v78.B * 255
+
+    local function v85()
+        local v86 = Color3.fromRGB(v82, v83, v84)
+        if v79 then v79(v86) end
+    end
+
+    local function v87(v88, v89, v90, v91)
+        local v92 = Instance.new("Frame")
+        v92.Size = UDim2.new(1, 0, 0, 15)
+        v92.Position = UDim2.new(0, 0, 0, v89)
+        v92.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+        v92.BorderSizePixel = 1
+        v92.BorderColor3 = Color3.fromRGB(60, 60, 70)
+        v92.Parent = v80
+
+        local v93 = Instance.new("Frame")
+        v93.Size = UDim2.new(v90 / 255, 0, 1, 0)
+        v93.BackgroundColor3 = Color3.fromRGB(255, 105, 180)
+        v93.BorderSizePixel = 0
+        v93.Parent = v92
+
+        local v94 = Instance.new("TextLabel")
+        v94.Size = UDim2.new(1, 0, 1, 0)
+        v94.BackgroundTransparency = 1
+        v94.Text = v88 .. ": " .. tostring(v90)
+        v94.TextColor3 = Color3.new(1, 1, 1)
+        v94.TextSize = 12
+        v94.FontFace = v21
+        v94.TextXAlignment = Enum.TextXAlignment.Center
+        v94.Parent = v92
+
+        local v95 = false
+
+        local function v96(v97)
+            local v98 = math.clamp((v97 - v92.AbsolutePosition.X) / v92.AbsoluteSize.X, 0, 1)
+            local v99 = math.floor(255 * v98)
+            v93.Size = UDim2.new(v98, 0, 1, 0)
+            v94.Text = v88 .. ": " .. tostring(v99)
+            v91(v99)
+        end
+
+        v92.InputBegan:Connect(function(v100)
+            if v100.UserInputType == Enum.UserInputType.MouseButton1 then
+                v95 = true
+                v96(v100.Position.X)
+            end
+        end)
+
+        v92.InputEnded:Connect(function(v101)
+            if v101.UserInputType == Enum.UserInputType.MouseButton1 then
+                v95 = false
+            end
+        end)
+
+        v3.InputChanged:Connect(function(v102)
+            if v95 and v102.UserInputType == Enum.UserInputType.MouseMovement then
+                v96(v102.Position.X)
+            end
+        end)
+    end
+
+    v87("R", 20, v82, function(v103) v82 = v103 v85() end)
+    v87("G", 45, v83, function(v104) v83 = v104 v85() end)
+    v87("B", 70, v84, function(v105) v84 = v105 v85() end)
+
+    v43:UpdateLayout()
+end
 function v43:Checkbox(v48,v49,v50)
 
     local v60=Instance.new("Frame")
@@ -875,7 +1087,7 @@ end)()
 Additional UI Components for BitchBotLib
 Slider, Dropdown, ColorPicker
 --]]
-
+--[[
 function v43:Slider(name, min, max, default, callback)
     local frame = Instance.new("Frame")
     frame.Size = UDim2.new(1, 0, 0, 40)
@@ -1090,3 +1302,4 @@ function v43:ColorPicker(name, defaultColor, callback)
 
     v43:UpdateLayout()
 end
+--]]
