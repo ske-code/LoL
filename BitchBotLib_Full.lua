@@ -290,6 +290,27 @@ function v23:ToggleWatermark(v26)
     v23.watermarkFrame.Visible = v26
 
 end
+v23.toggleButton = Instance.new("TextButton")
+v23.toggleButton.Size = UDim2.new(0, 80, 0, 25)
+v23.toggleButton.Position = UDim2.new(0, 10, 0, 40)
+v23.toggleButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+v23.toggleButton.BorderSizePixel = 0
+v23.toggleButton.Text = "Toggle UI"
+v23.toggleButton.TextColor3 = Color3.new(1, 1, 1)
+v23.toggleButton.TextSize = 12
+v23.toggleButton.FontFace = v21
+v23.toggleButton.Parent = v23.main
+
+local toggleLine = Instance.new("Frame")
+toggleLine.Size = UDim2.new(1, 0, 0, 2)
+toggleLine.Position = UDim2.new(0, 0, 0, 0)
+toggleLine.BackgroundColor3 = Color3.fromRGB(255, 105, 180)
+toggleLine.BorderSizePixel = 0
+toggleLine.Parent = v23.toggleButton
+
+v23.toggleButton.MouseButton1Click:Connect(function()
+    v23.mainFrame.Visible = not v23.mainFrame.Visible
+end)
 --[[
 v23:SetWatermark("BitchBotLib | " .. v23.name)
 
