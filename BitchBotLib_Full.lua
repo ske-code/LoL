@@ -1412,12 +1412,23 @@ v23.main.Name="BitchBotLib"
 v23.main.Parent = game:GetService("CoreGui")
 
 v23.mainFrame=Instance.new("Frame")
-v23.mainFrame.Size=UDim2.new(0,650,0,500)
-v23.mainFrame.Position=UDim2.new(0.5,-325,0.5,-250)
+v23.mainFrame.Size=UDim2.new(0,700,0,550)
+v23.mainFrame.Position=UDim2.new(0.5,-350,0.5,-275)
 v23.mainFrame.BackgroundColor3=Color3.fromRGB(10,10,15)
 v23.mainFrame.BorderSizePixel=0
 v23.mainFrame.ClipsDescendants=true
 v23.mainFrame.Parent=v23.main
+
+v23.title=Instance.new("TextLabel")
+v23.title.Size=UDim2.new(1,-10,1,0)
+v23.title.Position=UDim2.new(0,10,0,0)
+v23.title.BackgroundTransparency=1
+v23.title.Text=v23.name
+v23.title.TextColor3=Color3.new(1,1,1)
+v23.title.TextSize=18
+v23.title.FontFace=v21
+v23.title.TextXAlignment=Enum.TextXAlignment.Left
+v23.title.Parent=v23.mainFrame
 
 local mainFrameTopLine=Instance.new("Frame")
 mainFrameTopLine.Size=UDim2.new(1,0,0,1)
@@ -1739,16 +1750,23 @@ v43.content.Parent=v43.frame
 local v45=0
 
 function v43:UpdateLayout()
-v45=0
-for v46,v47 in pairs(v43.content:GetChildren())do
-if v47:IsA("Frame")then
-v47.Position=UDim2.new(0,0,0,v45)
-v45=v45+v47.AbsoluteSize.Y+5
-end
-end
-local newHeight = math.max(150, v45 + 30)
-v43.frame.Size = UDim2.new(1, 0, 0, newHeight)
-v34:UpdateContainer(v44)
+    v45 = 0
+    local children = {}
+    for v46, v47 in pairs(v43.content:GetChildren()) do
+        if v47:IsA("Frame") then
+            table.insert(children, v47)
+        end
+    end
+    table.sort(children, function(a, b)
+        return a.LayoutOrder < b.LayoutOrder
+    end)
+    for _, v47 in ipairs(children) do
+        v47.Position = UDim2.new(0, 0, 0, v45)
+        v45 = v45 + v47.AbsoluteSize.Y + 5
+    end
+    local newHeight = math.max(150, v45 + 30)
+    v43.frame.Size = UDim2.new(1, 0, 0, newHeight)
+    v34:UpdateContainer(v44)
 end
 
 if v43.side=="left"then
@@ -1819,7 +1837,7 @@ local v60=Instance.new("Frame")
 v60.Size=UDim2.new(1,0,0,20)
 v60.BackgroundTransparency=1
 v60.Parent=v43.content
-
+v60.LayoutOrder = #v43.content:GetChildren() + 1
 local v61=Instance.new("TextLabel")
 v61.Size=UDim2.new(1,0,1,0)
 v61.BackgroundTransparency=1
@@ -1877,7 +1895,7 @@ local v73=Instance.new("Frame")
 v73.Size=UDim2.new(1,0,0,25)
 v73.BackgroundTransparency=1
 v73.Parent=v43.content
-
+v73.LayoutOrder = #v43.content:GetChildren() + 1
 local v74=Instance.new("TextButton")
 v74.Size=UDim2.new(1,0,1,0)
 v74.BackgroundColor3=Color3.fromRGB(25,25,35)
@@ -1905,7 +1923,7 @@ local v82=Instance.new("Frame")
 v82.Size=UDim2.new(1,0,0,40)
 v82.BackgroundTransparency=1
 v82.Parent=v43.content
-
+v82.LayoutOrder = #v43.content:GetChildren() + 1
 local v83=Instance.new("TextLabel")
 v83.Size=UDim2.new(1,0,0,15)
 v83.BackgroundTransparency=1
@@ -1989,7 +2007,7 @@ local v95=Instance.new("Frame")
 v95.Size=UDim2.new(1,0,0,30)
 v95.BackgroundTransparency=1
 v95.Parent=v43.content
-
+v95.LayoutOrder = #v43.content:GetChildren() + 1
 local v96=Instance.new("TextButton")
 v96.Size=UDim2.new(1,0,1,0)
 v96.BackgroundColor3=Color3.fromRGB(25,25,35)
@@ -2056,7 +2074,7 @@ local v104=Instance.new("Frame")
 v104.Size=UDim2.new(1,0,0,120)
 v104.BackgroundTransparency=1
 v104.Parent=v43.content
-
+v104.LayoutOrder = #v43.content:GetChildren() + 1
 local v105=Instance.new("TextLabel")
 v105.Size=UDim2.new(1,0,0,15)
 v105.BackgroundTransparency=1
