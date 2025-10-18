@@ -1,5 +1,4 @@
---getgenv().BitchBotLib = (function()
---[[
+getgenv().BitchBotLib = (function()
 local v1={}
 
 v1.__index=v1
@@ -84,11 +83,11 @@ local v20=[[
 
 <Content name="FontData">
 
-<url>rbxasset://..v8..</url>
+<url>rbxasset://]]..v8..[[</url>
 
 </Content>
 
-<string name="Family">..v6..</string>
+<string name="Family">]]..v6..[[</string>
 
 <token name="Style">0</token>
 
@@ -98,7 +97,7 @@ local v20=[[
 
 </Item>
 
-</roblox>
+</roblox>]]
 
 writefile(v10,v20)
 
@@ -107,8 +106,7 @@ return Font.fromEnum(Enum.Font.Code)
 end
 
 local v21=vc()
---]]
---[[
+
 function v1.new(v22)
 
 local v23=setmetatable({},v1)
@@ -1117,6 +1115,71 @@ end
 return v1
 
 end)()
+v23.mainFrame.BackgroundColor3=Color3.fromRGB(25,25,35)
+v23.mainFrame.BorderColor3=Color3.fromRGB(70,70,80)
+
+v24.BackgroundColor3=Color3.fromRGB(45,45,55)
+
+v23.titleBar.BackgroundColor3=Color3.fromRGB(15,15,20)
+v23.titleBar.BorderColor3=Color3.fromRGB(70,70,80)
+
+topLine.BackgroundColor3=Color3.fromRGB(138,43,226)
+
+v23.tabContainer.BackgroundColor3=Color3.fromRGB(25,25,35)
+v23.tabContainer.BorderColor3=Color3.fromRGB(70,70,80)
+
+v23.watermarkFrame.BackgroundColor3=Color3.fromRGB(15,15,20)
+watermarkLine.BackgroundColor3=Color3.fromRGB(138,43,226)
+
+v23.toggleButton.BackgroundColor3=Color3.fromRGB(15,15,20)
+toggleLine.BackgroundColor3=Color3.fromRGB(138,43,226)
+
+v23.leftContainer.ScrollBarImageColor3=Color3.fromRGB(138,43,226)
+v23.rightContainer.ScrollBarImageColor3=Color3.fromRGB(138,43,226)
+
+v34.button.BackgroundColor3=Color3.fromRGB(45,45,55)
+v34.button.BorderColor3=Color3.fromRGB(70,70,80)
+v34.button.BackgroundColor3=Color3.fromRGB(138,43,226)
+
+v34.tabContainer.BackgroundColor3=Color3.fromRGB(25,25,35)
+v34.tabContainer.BorderColor3=Color3.fromRGB(70,70,80)
+
+v43.frame.BackgroundColor3=Color3.fromRGB(45,45,55)
+v43.frame.BorderColor3=Color3.fromRGB(70,70,80)
+
+sectionTopLine.BackgroundColor3=Color3.fromRGB(138,43,226)
+
+v55.BackgroundColor3=Color3.fromRGB(25,25,35)
+v55.BorderColor3=Color3.fromRGB(70,70,80)
+
+v56.BackgroundColor3=Color3.fromRGB(138,43,226)
+
+v72.BackgroundColor3=Color3.fromRGB(25,25,35)
+v72.BorderColor3=Color3.fromRGB(70,70,80)
+
+v73.BackgroundColor3=Color3.fromRGB(45,45,55)
+v73.BorderColor3=Color3.fromRGB(70,70,80)
+
+v76.BackgroundColor3=Color3.fromRGB(25,25,35)
+
+colorDisplay.BackgroundColor3=Color3.fromRGB(138,43,226)
+colorDisplay.BorderColor3=Color3.fromRGB(70,70,80)
+
+v92.BackgroundColor3=Color3.fromRGB(25,25,35)
+v92.BorderColor3=Color3.fromRGB(70,70,80)
+
+v93.BackgroundColor3=Color3.fromRGB(138,43,226)
+
+v53.BackgroundColor3=Color3.fromRGB(15,15,20)
+v53.BorderColor3=Color3.fromRGB(80,80,90)
+
+v54.BackgroundColor3=Color3.fromRGB(138,43,226)
+
+v66.BackgroundColor3=Color3.fromRGB(25,25,35)
+v66.BorderColor3=Color3.fromRGB(70,70,80)
+
+v74.BackgroundColor3=Color3.fromRGB(25,25,35)
+v74.BorderColor3=Color3.fromRGB(70,70,80)
 --]]
 --== Extended Components ==--
 
@@ -1339,60 +1402,28 @@ function v43:ColorPicker(name, defaultColor, callback)
 
     v43:UpdateLayout()
 end
---]]
-getgenv().BitchBotLib = (function()
-local v1={}
-v1.__index=v1
+--[[
+v23.mainFrame=Instance.new("Frame")
+v23.mainFrame.Size=UDim2.new(0,700,0,550)
+v23.mainFrame.Position=UDim2.new(0.5,-350,0.5,-275)
+v23.mainFrame.BackgroundColor3=Color3.fromRGB(10,10,15)
+v23.mainFrame.BorderSizePixel=0
+v23.mainFrame.ClipsDescendants=true
+v23.mainFrame.Parent=v23.main
 
-local v2=game:GetService("Players").LocalPlayer
-local v3=game:GetService("UserInputService")
-local v4=game:GetService("TweenService")
-local v5=game:GetService("RunService")
-
-local vc=function()
-local v6="Font_"..tostring(math.random(10000,99999))
-local v7="Folder_"..tostring(math.random(10000,99999))
-if isfolder("UI_Fonts")then delfolder("UI_Fonts")end
-makefolder(v7)
-local v8=v7.."/"..v6..".ttf"
-local v9=v7.."/"..v6..".json"
-local v10=v7.."/"..v6..".rbxmx"
-if not isfile(v8)then
-local v11=pcall(function()
-local v12=request({Url="https://raw.githubusercontent.com/bluescan/proggyfonts/refs/heads/master/ProggyOriginal/ProggyClean.ttf",Method="GET"})
-if v12 and v12.Success then writefile(v8,v12.Body)return true end
-return false
-end)
-if not v11 then return Font.fromEnum(Enum.Font.Code)end
-end
-local v13=pcall(function()
-local v14=readfile(v8)
-local v15=game:GetService("TextService"):RegisterFontFaceAsync(v14,v6)
-return v15
-end)
-if v13 then return v13 end
-local v16=pcall(function()return Font.fromFilename(v8)end)
-if v16 then return v16 end
-local v17={name=v6,faces={{name="Regular",weight=400,style="Normal",assetId=getcustomasset(v8)}}}
-writefile(v9,game:GetService("HttpService"):JSONEncode(v17))
-local v18,v19=pcall(function()return Font.new(getcustomasset(v9))end)
-if v18 then return v19 end
-local v20=[[
-<?xml version="1.0" encoding="utf-8"?>
-<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
-<External>null</External>
-<External>nil</External>
-<Item class="FontFace" referent="RBX0">
-<Properties>
-<Content name="FontData">
-<url>rbxasset://]]..v8..[[</url>
-</Content>
-<string name="Family">]]..v6..[[</string>
-<token name="Style">0</token>
-<token name="Weight">400</token>
+v23.title=Instance.new("TextLabel")
+v23.title.Size=UDim2.new(1,-10,1,0)
+v23.title.Position=UDim2.new(0,10,0,0)
+v23.title.BackgroundTransparency=1
+v23.title.Text=v23.name
+v23.title.TextColor3=Color3.new(1,1,1)
+v23.title.TextSize=18
+v23.title.FontFace=v21
+v23.title.TextXAlignment=Enum.TextXAlignment.Left
+v23.title.Parent=v23.titleBar<token name="Weight">400</token>
 </Properties>
 </Item>
-</roblox>]]
+</roblox>
 writefile(v10,v20)
 return Font.fromEnum(Enum.Font.Code)
 end
@@ -2173,3 +2204,4 @@ end
 
 return v1
 end)()
+--]]
