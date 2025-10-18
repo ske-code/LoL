@@ -136,10 +136,11 @@ v23.mainFrame.Size=UDim2.new(0,600,0,705)
 v23.mainFrame.Position=UDim2.new(0.5,-250,0.5,-200)
 
 v23.mainFrame.BackgroundColor3=Color3.fromRGB(25,25,35)
+v23.mainFrame.BorderColor3=Color3.fromRGB(70,70,80)
 
 v23.mainFrame.BorderSizePixel=1
 
-v23.mainFrame.BorderColor3=Color3.fromRGB(60,60,70)
+--v23.mainFrame.BorderColor3=Color3.fromRGB(60,60,70)
 
 v23.mainFrame.ClipsDescendants=true
 
@@ -151,7 +152,7 @@ v24.Size=UDim2.new(1,-4,1,-4)
 
 v24.Position=UDim2.new(0,2,0,2)
 
-v24.BackgroundColor3=Color3.fromRGB(30,30,40)
+v24.BackgroundColor3=Color3.fromRGB(45,45,55)
 
 v24.BorderSizePixel=0
 
@@ -161,11 +162,10 @@ v23.titleBar=Instance.new("Frame")
 
 v23.titleBar.Size=UDim2.new(1,0,0,30)
 
-v23.titleBar.BackgroundColor3=Color3.fromRGB(20,20,30)
+v23.titleBar.BackgroundColor3=Color3.fromRGB(15,15,20)
+v23.titleBar.BorderColor3=Color3.fromRGB(70,70,80)
 
 v23.titleBar.BorderSizePixel=1
-
-v23.titleBar.BorderColor3=Color3.fromRGB(60,60,70)
 
 v23.titleBar.Parent=v24
 
@@ -175,7 +175,7 @@ topLine.Size=UDim2.new(1,0,0,2)
 
 topLine.Position=UDim2.new(0,0,0,0)
 
-topLine.BackgroundColor3=Color3.fromRGB(255,105,180)
+topLine.BackgroundColor3=Color3.fromRGB(138,43,226)
 
 topLine.BorderSizePixel=0
 
@@ -206,10 +206,11 @@ v23.tabContainer=Instance.new("Frame")
 v23.tabContainer.Size=UDim2.new(1,0,0,30)
 
 v23.tabContainer.BackgroundColor3=Color3.fromRGB(25,25,35)
+v23.tabContainer.BorderColor3=Color3.fromRGB(70,70,80)
 
 v23.tabContainer.BorderSizePixel=1
 
-v23.tabContainer.BorderColor3=Color3.fromRGB(60,60,70)
+--v23.tabContainer.BorderColor3=Color3.fromRGB(60,60,70)
 
 v23.tabContainer.Parent=v24
 
@@ -232,7 +233,7 @@ v23.watermarkFrame.Size = UDim2.new(0, 0, 0, 25)
 
 v23.watermarkFrame.Position = UDim2.new(0, 10, 0, 10)
 
-v23.watermarkFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+v23.watermarkFrame.BackgroundColor3 = Color3.fromRGB(15,15,20)
 
 v23.watermarkFrame.BorderSizePixel = 0
 
@@ -248,7 +249,7 @@ watermarkLine.Size = UDim2.new(1, 0, 0, 2)
 
 watermarkLine.Position = UDim2.new(0, 0, 0, 0)
 
-watermarkLine.BackgroundColor3 = Color3.fromRGB(255, 105, 180)
+watermarkLine.BackgroundColor3 = Color3.fromRGB(138,43,226)
 
 watermarkLine.BorderSizePixel = 0
 
@@ -292,7 +293,7 @@ end
 v23.toggleButton = Instance.new("TextButton")
 v23.toggleButton.Size = UDim2.new(0, 80, 0, 25)
 v23.toggleButton.Position = UDim2.new(0, 10, 0, 40)
-v23.toggleButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+v23.toggleButton.BackgroundColor3=Color3.fromRGB(15,15,20)
 v23.toggleButton.BorderSizePixel = 0
 v23.toggleButton.Text = "Toggle UI"
 v23.toggleButton.TextColor3 = Color3.new(1, 1, 1)
@@ -303,7 +304,7 @@ v23.toggleButton.Parent = v23.main
 local toggleLine = Instance.new("Frame")
 toggleLine.Size = UDim2.new(1, 0, 0, 2)
 toggleLine.Position = UDim2.new(0, 0, 0, 0)
-toggleLine.BackgroundColor3 = Color3.fromRGB(255, 105, 180)
+toggleLine.BackgroundColor3=Color3.fromRGB(138,43,226)
 toggleLine.BorderSizePixel = 0
 toggleLine.Parent = v23.toggleButton
 
@@ -415,11 +416,13 @@ v34.button.Size=UDim2.new(0,80,1,0)
 
 v34.button.Position=UDim2.new(0,#self.tabs*80,0,0)
 
-v34.button.BackgroundColor3=Color3.fromRGB(35,35,45)
+v34.button.BackgroundColor3=Color3.fromRGB(45,45,55)
+v34.button.BorderColor3=Color3.fromRGB(70,70,80)
+
 
 v34.button.BorderSizePixel=1
 
-v34.button.BorderColor3=Color3.fromRGB(60,60,70)
+--v34.button.BorderColor3=Color3.fromRGB(60,60,70)
 
 v34.button.Text=v33
 
@@ -537,11 +540,12 @@ v43.frame=Instance.new("Frame")
 
 v43.frame.Size=UDim2.new(1,0,0,150)
 
-v43.frame.BackgroundColor3=Color3.fromRGB(30,30,40)
+v43.frame.BackgroundColor3=Color3.fromRGB(45,45,55)
+v43.frame.BorderColor3=Color3.fromRGB(70,70,80)
 
 v43.frame.BorderSizePixel=1
 
-v43.frame.BorderColor3=Color3.fromRGB(60,60,70)
+--v43.frame.BorderColor3=Color3.fromRGB(60,60,70)
 
 v43.frame.Parent=v44
 
@@ -551,7 +555,7 @@ sectionTopLine.Size=UDim2.new(1,0,0,2)
 
 sectionTopLine.Position=UDim2.new(0,0,0,0)
 
-sectionTopLine.BackgroundColor3=Color3.fromRGB(255,105,180)
+sectionTopLine.BackgroundColor3=Color3.fromRGB(138,43,226)
 
 sectionTopLine.BorderSizePixel=0
 
@@ -628,14 +632,15 @@ function v43:Slider(v48, v49, v50, v51, v52)
     local v55 = Instance.new("Frame")
     v55.Size = UDim2.new(1, 0, 0, 15)
     v55.Position = UDim2.new(0, 0, 0, 20)
-    v55.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+    v55.BackgroundColor3=Color3.fromRGB(25,25,35)
+    v55.BorderColor3=Color3.fromRGB(70,70,80)
     v55.BorderSizePixel = 1
-    v55.BorderColor3 = Color3.fromRGB(60, 60, 70)
+   -- v55.BorderColor3 = Color3.fromRGB(60, 60, 70)
     v55.Parent = v53
 
     local v56 = Instance.new("Frame")
     v56.Size = UDim2.new((v51 - v49) / (v50 - v49), 0, 1, 0)
-    v56.BackgroundColor3 = Color3.fromRGB(255, 105, 180)
+    v56.BackgroundColor3=Color3.fromRGB(138,43,226)
     v56.BorderSizePixel = 0
     v56.Parent = v55
 
@@ -701,9 +706,10 @@ function v43:Dropdown(v68, v69, v70)
 
     local v72 = Instance.new("TextButton")
     v72.Size = UDim2.new(1, 0, 1, 0)
-    v72.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+    v72.BackgroundColor3=Color3.fromRGB(25,25,35)
+    v72.BorderColor3=Color3.fromRGB(70,70,80)
     v72.BorderSizePixel = 1
-    v72.BorderColor3 = Color3.fromRGB(60, 60, 70)
+   -- v72.BorderColor3 = Color3.fromRGB(60, 60, 70)
     v72.Text = v68
     v72.TextColor3 = Color3.new(1, 1, 1)
     v72.TextSize = 12
@@ -713,9 +719,10 @@ function v43:Dropdown(v68, v69, v70)
     local v73 = Instance.new("Frame")
     v73.Size = UDim2.new(1, 0, 0, #v69 * 25)
     v73.Position = UDim2.new(0, 0, 1, 2)
-    v73.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+    v73.BackgroundColor3=Color3.fromRGB(45,45,55)
+    v73.BorderColor3=Color3.fromRGB(70,70,80)
     v73.BorderSizePixel = 1
-    v73.BorderColor3 = Color3.fromRGB(60, 60, 70)
+    --v73.BorderColor3 = Color3.fromRGB(60, 60, 70)
     v73.Visible = false
     v73.ZIndex = 10
     v73.Parent = v71
@@ -724,10 +731,12 @@ function v43:Dropdown(v68, v69, v70)
         local v76 = Instance.new("TextButton")
         v76.Size = UDim2.new(1, 0, 0, 25)
         v76.Position = UDim2.new(0, 0, 0, (v74 - 1) * 25)
-        v76.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+        v76.BackgroundColor3 = Color3.fromRGB(25,25,35)
         v76.BorderSizePixel = 0
         v76.Text = v75
+        v76.ZIndex = 21  
         v76.TextColor3 = Color3.new(1, 1, 1)
+        v76.TextTransparency = 0  
         v76.TextSize = 12
         v76.FontFace = v21
         v76.Parent = v73
@@ -758,7 +767,7 @@ function v43:Dropdown(v68, v69, v70)
     end)
 
     v43:UpdateLayout()
-end
+
 
 function v43:ColorPicker(v77, v78, v79)
     local v80 = Instance.new("Frame")
@@ -779,9 +788,9 @@ function v43:ColorPicker(v77, v78, v79)
     local colorDisplay = Instance.new("Frame")
     colorDisplay.Size = UDim2.new(1, 0, 0, 20)
     colorDisplay.Position = UDim2.new(0, 0, 0, 15)
-    colorDisplay.BackgroundColor3 = v78
+    colorDisplay.BackgroundColor3=Color3.fromRGB(138,43,226)
+    colorDisplay.BorderColor3=Color3.fromRGB(70,70,80)
     colorDisplay.BorderSizePixel = 1
-    colorDisplay.BorderColor3 = Color3.fromRGB(60, 60, 70)
     colorDisplay.Parent = v80
 
     local v82, v83, v84 = v78.R * 255, v78.G * 255, v78.B * 255
@@ -796,14 +805,15 @@ function v43:ColorPicker(v77, v78, v79)
         local v92 = Instance.new("Frame")
         v92.Size = UDim2.new(1, 0, 0, 15)
         v92.Position = UDim2.new(0, 0, 0, v89)
-        v92.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+        v92.BackgroundColor3=Color3.fromRGB(25,25,35)
+        v92.BorderColor3=Color3.fromRGB(70,70,80)
         v92.BorderSizePixel = 1
-        v92.BorderColor3 = Color3.fromRGB(60, 60, 70)
+       -- v92.BorderColor3 = Color3.fromRGB(60, 60, 70)
         v92.Parent = v80
 
         local v93 = Instance.new("Frame")
         v93.Size = UDim2.new(v90 / 255, 0, 1, 0)
-        v93.BackgroundColor3 = Color3.fromRGB(255, 105, 180)
+        v93.BackgroundColor3=Color3.fromRGB(138,43,226)
         v93.BorderSizePixel = 0
         v93.Parent = v92
 
@@ -901,11 +911,12 @@ function v43:Checkbox(v48,v49,v50)
 
     v53.Position=UDim2.new(1,-20,0.5,-7)
 
-    v53.BackgroundColor3=Color3.fromRGB(25,25,35)
+    v53.BackgroundColor3=Color3.fromRGB(15,15,20)
+    v53.BorderColor3=Color3.fromRGB(80,80,90)
 
     v53.BorderSizePixel=1
 
-    v53.BorderColor3=Color3.fromRGB(80,80,90)
+    --v53.BorderColor3=Color3.fromRGB(80,80,90)
 
     v53.Parent=v51
 
@@ -915,7 +926,7 @@ function v43:Checkbox(v48,v49,v50)
 
     v54.Position=UDim2.new(0.5,-4,0.5,-4)
 
-    v54.BackgroundColor3=Color3.fromRGB(255,105,180)
+    v54.BackgroundColor3=Color3.fromRGB(138,43,226)
 
     v54.BorderSizePixel=0
 
@@ -1008,11 +1019,11 @@ local v66=Instance.new("TextBox")
 
 v66.Size=UDim2.new(1,0,1,0)
 
-v66.BackgroundColor3=Color3.fromRGB(35,35,45)
-
+v66.BackgroundColor3=Color3.fromRGB(25,25,35)
+v66.BorderColor3=Color3.fromRGB(70,70,80)
 v66.BorderSizePixel=1
 
-v66.BorderColor3=Color3.fromRGB(60,60,70)
+--v66.BorderColor3=Color3.fromRGB(60,60,70)
 
 v66.Text=v63 or ""
 
@@ -1072,8 +1083,7 @@ local v74=Instance.new("TextButton")
 
 v74.Size=UDim2.new(1,0,1,0)
 
-v74.BackgroundColor3=Color3.fromRGB(35,35,45)
-
+v74.BackgroundColor3=Color3.fromRGB(25,25,35)
 v74.BorderSizePixel=1
 
 v74.BorderColor3=Color3.fromRGB(60,60,70)
@@ -1115,71 +1125,7 @@ end
 return v1
 
 end)()
-v23.mainFrame.BackgroundColor3=Color3.fromRGB(25,25,35)
-v23.mainFrame.BorderColor3=Color3.fromRGB(70,70,80)
 
-v24.BackgroundColor3=Color3.fromRGB(45,45,55)
-
-v23.titleBar.BackgroundColor3=Color3.fromRGB(15,15,20)
-v23.titleBar.BorderColor3=Color3.fromRGB(70,70,80)
-
-topLine.BackgroundColor3=Color3.fromRGB(138,43,226)
-
-v23.tabContainer.BackgroundColor3=Color3.fromRGB(25,25,35)
-v23.tabContainer.BorderColor3=Color3.fromRGB(70,70,80)
-
-v23.watermarkFrame.BackgroundColor3=Color3.fromRGB(15,15,20)
-watermarkLine.BackgroundColor3=Color3.fromRGB(138,43,226)
-
-v23.toggleButton.BackgroundColor3=Color3.fromRGB(15,15,20)
-toggleLine.BackgroundColor3=Color3.fromRGB(138,43,226)
-
-v23.leftContainer.ScrollBarImageColor3=Color3.fromRGB(138,43,226)
-v23.rightContainer.ScrollBarImageColor3=Color3.fromRGB(138,43,226)
-
-v34.button.BackgroundColor3=Color3.fromRGB(45,45,55)
-v34.button.BorderColor3=Color3.fromRGB(70,70,80)
-v34.button.BackgroundColor3=Color3.fromRGB(138,43,226)
-
-v34.tabContainer.BackgroundColor3=Color3.fromRGB(25,25,35)
-v34.tabContainer.BorderColor3=Color3.fromRGB(70,70,80)
-
-v43.frame.BackgroundColor3=Color3.fromRGB(45,45,55)
-v43.frame.BorderColor3=Color3.fromRGB(70,70,80)
-
-sectionTopLine.BackgroundColor3=Color3.fromRGB(138,43,226)
-
-v55.BackgroundColor3=Color3.fromRGB(25,25,35)
-v55.BorderColor3=Color3.fromRGB(70,70,80)
-
-v56.BackgroundColor3=Color3.fromRGB(138,43,226)
-
-v72.BackgroundColor3=Color3.fromRGB(25,25,35)
-v72.BorderColor3=Color3.fromRGB(70,70,80)
-
-v73.BackgroundColor3=Color3.fromRGB(45,45,55)
-v73.BorderColor3=Color3.fromRGB(70,70,80)
-
-v76.BackgroundColor3=Color3.fromRGB(25,25,35)
-
-colorDisplay.BackgroundColor3=Color3.fromRGB(138,43,226)
-colorDisplay.BorderColor3=Color3.fromRGB(70,70,80)
-
-v92.BackgroundColor3=Color3.fromRGB(25,25,35)
-v92.BorderColor3=Color3.fromRGB(70,70,80)
-
-v93.BackgroundColor3=Color3.fromRGB(138,43,226)
-
-v53.BackgroundColor3=Color3.fromRGB(15,15,20)
-v53.BorderColor3=Color3.fromRGB(80,80,90)
-
-v54.BackgroundColor3=Color3.fromRGB(138,43,226)
-
-v66.BackgroundColor3=Color3.fromRGB(25,25,35)
-v66.BorderColor3=Color3.fromRGB(70,70,80)
-
-v74.BackgroundColor3=Color3.fromRGB(25,25,35)
-v74.BorderColor3=Color3.fromRGB(70,70,80)
 --]]
 --== Extended Components ==--
 
